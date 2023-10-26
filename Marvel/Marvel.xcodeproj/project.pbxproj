@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		228702D42AEA430F00E01B44 /* RemoteCharacterLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 228702D32AEA430F00E01B44 /* RemoteCharacterLoader.swift */; };
 		22B7DDDB2AEA2B9B00F233EF /* Marvel.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 22B7DDD22AEA2B9B00F233EF /* Marvel.framework */; };
 		22B7DDE02AEA2B9B00F233EF /* RemoteCharacterLoaderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22B7DDDF2AEA2B9B00F233EF /* RemoteCharacterLoaderTests.swift */; };
 		22B7DDEB2AEA3A1900F233EF /* CharacterItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22B7DDEA2AEA3A1900F233EF /* CharacterItem.swift */; };
@@ -24,6 +25,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		228702D32AEA430F00E01B44 /* RemoteCharacterLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteCharacterLoader.swift; sourceTree = "<group>"; };
 		22B7DDD22AEA2B9B00F233EF /* Marvel.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Marvel.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		22B7DDDA2AEA2B9B00F233EF /* MarvelTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MarvelTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		22B7DDDF2AEA2B9B00F233EF /* RemoteCharacterLoaderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteCharacterLoaderTests.swift; sourceTree = "<group>"; };
@@ -59,6 +61,14 @@
 			path = "Character Feature";
 			sourceTree = "<group>";
 		};
+		228702D22AEA42A600E01B44 /* Character API */ = {
+			isa = PBXGroup;
+			children = (
+				228702D32AEA430F00E01B44 /* RemoteCharacterLoader.swift */,
+			);
+			path = "Character API";
+			sourceTree = "<group>";
+		};
 		22B7DDC82AEA2B9B00F233EF = {
 			isa = PBXGroup;
 			children = (
@@ -80,6 +90,7 @@
 		22B7DDD42AEA2B9B00F233EF /* Marvel */ = {
 			isa = PBXGroup;
 			children = (
+				228702D22AEA42A600E01B44 /* Character API */,
 				228702D12AEA426900E01B44 /* Character Feature */,
 			);
 			path = Marvel;
@@ -203,6 +214,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				22B7DDED2AEA3A3500F233EF /* CharacterLoader.swift in Sources */,
+				228702D42AEA430F00E01B44 /* RemoteCharacterLoader.swift in Sources */,
 				22B7DDEB2AEA3A1900F233EF /* CharacterItem.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

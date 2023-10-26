@@ -6,22 +6,7 @@
 //
 
 import XCTest
-
-class RemoteCharacterLoader {
-    let client: HTTPClient
-    
-    init(client: HTTPClient) {
-        self.client = client
-    }
-    
-    func load(from url: URL) {
-        client.get(url: url)
-    }
-}
-
-protocol HTTPClient {
-    func get(url: URL)
-}
+import Marvel
 
 class RemoteCharacterLoaderTests: XCTestCase {
     
