@@ -65,29 +65,11 @@ class RemoteCharacterLoaderTests: XCTestCase {
     func test_load_deliversItemsOn200HTTPResponseWithJSONItems() {
         let (sut, client) = makeSUT()
         
-        let item1 = CharacterItem(id: 0, name: "Iron man", thumbnail: URL(string: "http://any-url0.com")!)
-        let item2 = CharacterItem(id: 1, name: "Spider man", thumbnail: URL(string: "http://any-url1.com")!)
-        
-        let thumbnail1JSON = [
-            "path": item1.thumbnail.absoluteString
-        ]
-        let item1JSON = [
-            "id": item1.id,
-            "name": item1.name,
-            "thumbnail": thumbnail1JSON
-        ] as [String : Any]
-        
-        let thumbnail2JSON = [
-            "path": item2.thumbnail.absoluteString
-        ]
-        let item2JSON = [
-            "id": item2.id,
-            "name": item2.name,
-            "thumbnail": thumbnail2JSON
-        ] as [String : Any]
+        let (item0, item0JSON) = makeCharacterJSONItem(id: 0, name: "Iron man", thumbnail: URL(string: "http://any-url0.com")!)
+        let (item1, item1JSON) = makeCharacterJSONItem(id: 1, name: "Spider man", thumbnail: URL(string: "http://any-url1.com")!)
         
         let itemsJSON = [
-            "results": [item1JSON, item2JSON]
+            "results": [item0JSON, item1JSON]
         ]
         
         let responseJSON = [
@@ -96,7 +78,7 @@ class RemoteCharacterLoaderTests: XCTestCase {
         
         let json = try! JSONSerialization.data(withJSONObject: responseJSON)
         
-        expect(sut, completionWith: .success([item1, item2])) {
+        expect(sut, completionWith: .success([item0, item1])) {
             client.completionWith(data: json)
         }
     }
@@ -108,6 +90,22 @@ class RemoteCharacterLoaderTests: XCTestCase {
         let sut = RemoteCharacterLoader(client: client)
         
         return (sut, client)
+    }
+    
+    private func makeCharacterJSONItem(id: Int, name: String, thumbnail: URL) -> (model: CharacterItem, json: [String: Any]) {
+        let item = CharacterItem(id: id, name: name, thumbnail: thumbnail)
+        
+        let thumbnailJSON = [
+            "path": item.thumbnail.absoluteString
+        ]
+        
+        let itemJSON = [
+            "id": item.id,
+            "name": item.name,
+            "thumbnail": thumbnailJSON
+        ] as [String : Any]
+        
+        return (item, itemJSON)
     }
     
     private func expect(_ sut: RemoteCharacterLoader, completionWith expectedResult: Result<[CharacterItem], RemoteCharacterLoader.Error>, action: (() -> Void), file: StaticString = #filePath, line: UInt = #line) {
