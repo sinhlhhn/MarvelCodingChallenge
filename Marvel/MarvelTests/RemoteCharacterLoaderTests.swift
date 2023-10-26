@@ -37,8 +37,10 @@ class RemoteCharacterLoaderTests: XCTestCase {
     func test_load_deliversErrorOnNon200HTTPResponse() {
         let (sut, client) = makeSUT()
 
-        expect(sut, completionWith: .failure(.invalidData)) {
-            client.completionWith(errorCode: 300)
+        [100, 199, 201, 300, 500].enumerated().forEach { index, statusCode in
+            expect(sut, completionWith: .failure(.invalidData)) {
+                client.completionWith(statusCode: statusCode, at: index)
+            }
         }
     }
     
@@ -85,8 +87,8 @@ class RemoteCharacterLoaderTests: XCTestCase {
             messages[index].completion(.failure(error))
         }
         
-        func completionWith(errorCode: Int, at index: Int = 0) {
-            let response = HTTPURLResponse(url: requestedURLs[index], statusCode: errorCode, httpVersion: nil, headerFields: nil)!
+        func completionWith(statusCode: Int, at index: Int = 0) {
+            let response = HTTPURLResponse(url: requestedURLs[index], statusCode: statusCode, httpVersion: nil, headerFields: nil)!
             let data = Data()
             messages[index].completion(.success((data, response)))
         }
