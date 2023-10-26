@@ -27,40 +27,10 @@ public final class RemoteCharacterLoader {
         client.get(url: url) { result in
             switch result {
             case let .success((data, response)):
-                if response.statusCode == 200, let root = try? JSONDecoder().decode(Root.self, from: data) {
-                    completion(.success(root.characterItems))
-                } else {
-                    completion(.failure(.invalidData))
-                }
+                completion(CharacterMapper.map(data, response))
             case .failure(_):
                 completion(.failure(.connectivity))
             }
         }
     }
 }
-
-struct Root: Codable {
-    private let data: DataClass
-    
-    var characterItems: [CharacterItem] {
-        data.results.map {
-            CharacterItem(id: $0.id, name: $0.name, thumbnail: URL(string: $0.thumbnail.path)!)
-        }
-    }
-    
-    private struct DataClass: Codable {
-        let results: [Character]
-    }
-
-    private struct Character: Codable {
-        let id: Int
-        let name: String
-        let thumbnail: Thumbnail
-    }
-
-    private struct Thumbnail: Codable {
-        let path: String
-    }
-}
-
-

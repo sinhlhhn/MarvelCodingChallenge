@@ -12,6 +12,7 @@
 		22B7DDE02AEA2B9B00F233EF /* RemoteCharacterLoaderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22B7DDDF2AEA2B9B00F233EF /* RemoteCharacterLoaderTests.swift */; };
 		22B7DDEB2AEA3A1900F233EF /* CharacterItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22B7DDEA2AEA3A1900F233EF /* CharacterItem.swift */; };
 		22B7DDED2AEA3A3500F233EF /* CharacterLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22B7DDEC2AEA3A3500F233EF /* CharacterLoader.swift */; };
+		22E303A02AEA67C900482469 /* CharacterMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22E3039F2AEA67C900482469 /* CharacterMapper.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -31,6 +32,7 @@
 		22B7DDDF2AEA2B9B00F233EF /* RemoteCharacterLoaderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteCharacterLoaderTests.swift; sourceTree = "<group>"; };
 		22B7DDEA2AEA3A1900F233EF /* CharacterItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterItem.swift; sourceTree = "<group>"; };
 		22B7DDEC2AEA3A3500F233EF /* CharacterLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterLoader.swift; sourceTree = "<group>"; };
+		22E3039F2AEA67C900482469 /* CharacterMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterMapper.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -65,6 +67,7 @@
 			isa = PBXGroup;
 			children = (
 				228702D32AEA430F00E01B44 /* RemoteCharacterLoader.swift */,
+				22E3039F2AEA67C900482469 /* CharacterMapper.swift */,
 			);
 			path = "Character API";
 			sourceTree = "<group>";
@@ -215,6 +218,7 @@
 			files = (
 				22B7DDED2AEA3A3500F233EF /* CharacterLoader.swift in Sources */,
 				228702D42AEA430F00E01B44 /* RemoteCharacterLoader.swift in Sources */,
+				22E303A02AEA67C900482469 /* CharacterMapper.swift in Sources */,
 				22B7DDEB2AEA3A1900F233EF /* CharacterItem.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
