@@ -10,6 +10,8 @@ import Foundation
 final class CharacterMapper {
     private init() {}
     
+    private static let isOK = 200
+    
     private struct Root: Codable {
         private let data: DataClass
         
@@ -35,7 +37,7 @@ final class CharacterMapper {
     }
     
     static func map(_ data: Data, _ response: HTTPURLResponse) -> Result<[CharacterItem], RemoteCharacterLoader.Error> {
-        if response.statusCode == 200, let root = try? JSONDecoder().decode(Root.self, from: data) {
+        if response.statusCode == isOK, let root = try? JSONDecoder().decode(Root.self, from: data) {
             return .success(root.characterItems)
         } else {
             return .failure(.invalidData)
