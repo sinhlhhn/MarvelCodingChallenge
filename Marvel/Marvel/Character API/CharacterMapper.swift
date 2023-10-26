@@ -36,11 +36,11 @@ final class CharacterMapper {
         }
     }
     
-    static func map(_ data: Data, _ response: HTTPURLResponse) -> Result<[CharacterItem], RemoteCharacterLoader.Error> {
+    static func map(_ data: Data, _ response: HTTPURLResponse) -> Result<[CharacterItem], Error> {
         if response.statusCode == isOK, let root = try? JSONDecoder().decode(Root.self, from: data) {
             return .success(root.characterItems)
         } else {
-            return .failure(.invalidData)
+            return .failure(RemoteCharacterLoader.Error.invalidData)
         }
     }
 }

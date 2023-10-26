@@ -88,7 +88,7 @@ class RemoteCharacterLoaderTests: XCTestCase {
         let client = HTTPClientSpy()
         var sut: RemoteCharacterLoader? = RemoteCharacterLoader(client: client)
         
-        var capturedResult: Result<[CharacterItem], RemoteCharacterLoader.Error>?
+        var capturedResult: Result<[CharacterItem], Error>?
         
         sut?.load(from: url, completion: { result in
             capturedResult = result
@@ -134,7 +134,7 @@ class RemoteCharacterLoaderTests: XCTestCase {
             switch (result, expectedResult) {
             case let (.success(item), .success(expectedItem)):
                 XCTAssertEqual(item, expectedItem, file: file, line: line)
-            case let (.failure(error), .failure(expectedError)):
+            case let (.failure(error as RemoteCharacterLoader.Error), .failure(expectedError)):
                 XCTAssertEqual(error, expectedError, file: file, line: line)
             default:
                 XCTFail("Expected \(expectedResult) got \(result) instead", file: file, line: line)
