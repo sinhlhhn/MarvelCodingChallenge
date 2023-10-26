@@ -26,20 +26,27 @@ protocol HTTPClient {
 class RemoteCharacterLoaderTests: XCTestCase {
     
     func test_init_doesNotRequestURL() {
-        let client = HTTPClientSpy()
-        _ = RemoteCharacterLoader(client: client)
+        let (_, client) = makeSUT()
         
         XCTAssertEqual(client.requestedURLs, [])
     }
     
     func test_load_requestsURL() {
         let url = URL(string: "https://any-url.com")!
-        let client = HTTPClientSpy()
-        let sut = RemoteCharacterLoader(client: client)
+        let (sut, client) = makeSUT()
         
         sut.load(from: url)
         
         XCTAssertEqual(client.requestedURLs, [url])
+    }
+    
+    //MARK: - Helpers
+    
+    private func makeSUT() -> (RemoteCharacterLoader, HTTPClientSpy) {
+        let client = HTTPClientSpy()
+        let sut = RemoteCharacterLoader(client: client)
+        
+        return (sut, client)
     }
     
     private class HTTPClientSpy: HTTPClient {
