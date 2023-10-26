@@ -20,7 +20,7 @@ public final class RemoteCharacterLoader: CharacterLoader {
     }
     
     public func load(from url: URL, completion: @escaping ((Result<[CharacterItem], Swift.Error>) -> Void)) {
-        client.get(url: url) { [weak self] result in
+        client.get(from: url) { [weak self] result in
             guard self != nil else { return }
             switch result {
             case let .success((data, response)):

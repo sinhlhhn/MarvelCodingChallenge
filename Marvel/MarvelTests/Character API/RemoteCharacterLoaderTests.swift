@@ -154,7 +154,7 @@ class RemoteCharacterLoaderTests: XCTestCase {
             messages.map { $0.url }
         }
         
-        func get(url: URL, completion: @escaping ((Result<(Data, HTTPURLResponse), Error>) -> Void)) {
+        func get(from url: URL, completion: @escaping ((Result<(Data, HTTPURLResponse), Error>) -> Void)) {
             messages.append((url, completion))
         }
         
