@@ -7,7 +7,7 @@
 
 import Foundation
 
-final class CharacterMapper {
+public final class CharacterMapper {
     private init() {}
     
     private static let isOK = 200
@@ -36,7 +36,7 @@ final class CharacterMapper {
         }
     }
     
-    static func map(_ data: Data, _ response: HTTPURLResponse) -> Result<[CharacterItem], Error> {
+    public static func map(_ data: Data, _ response: HTTPURLResponse) -> Result<[CharacterItem], Error> {
         if response.statusCode == isOK, let root = try? JSONDecoder().decode(Root.self, from: data) {
             return .success(root.characterItems)
         } else {
