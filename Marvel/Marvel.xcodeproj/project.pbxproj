@@ -50,6 +50,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		228702D12AEA426900E01B44 /* Character Feature */ = {
+			isa = PBXGroup;
+			children = (
+				22B7DDEA2AEA3A1900F233EF /* CharacterItem.swift */,
+				22B7DDEC2AEA3A3500F233EF /* CharacterLoader.swift */,
+			);
+			path = "Character Feature";
+			sourceTree = "<group>";
+		};
 		22B7DDC82AEA2B9B00F233EF = {
 			isa = PBXGroup;
 			children = (
@@ -71,8 +80,7 @@
 		22B7DDD42AEA2B9B00F233EF /* Marvel */ = {
 			isa = PBXGroup;
 			children = (
-				22B7DDEA2AEA3A1900F233EF /* CharacterItem.swift */,
-				22B7DDEC2AEA3A3500F233EF /* CharacterLoader.swift */,
+				228702D12AEA426900E01B44 /* Character Feature */,
 			);
 			path = Marvel;
 			sourceTree = "<group>";
