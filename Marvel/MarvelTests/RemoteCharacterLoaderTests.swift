@@ -50,6 +50,30 @@ class RemoteCharacterLoaderTests: XCTestCase {
         XCTAssertEqual(capturedError, .connectivity)
     }
     
+    func test_load_deliversErrorOnNon200HTTPResponse() {
+        let url = URL(string: "https://any-url.com")!
+        let (sut, client) = makeSUT()
+        
+        var capturedError: RemoteCharacterLoader.Error?
+        
+        let exp = expectation(description: "wait for completion")
+        sut.load(from: url) { result in
+            switch result {
+            case .success(let item):
+                XCTFail("Expected failure got \(item) instead")
+            case .failure(let error):
+                capturedError = error
+            }
+            exp.fulfill()
+        }
+        
+        client.completionWith(errorCode: 300)
+        
+        wait(for: [exp], timeout: 1)
+        
+        XCTAssertEqual(capturedError, .invalidData)
+    }
+    
     //MARK: - Helpers
     
     private func makeSUT() -> (RemoteCharacterLoader, HTTPClientSpy) {
@@ -72,6 +96,12 @@ class RemoteCharacterLoaderTests: XCTestCase {
         
         func completionWith(error: Error, at index: Int = 0) {
             messages[index].completion(.failure(error))
+        }
+        
+        func completionWith(errorCode: Int, at index: Int = 0) {
+            let response = HTTPURLResponse(url: requestedURLs[index], statusCode: errorCode, httpVersion: nil, headerFields: nil)!
+            let data = Data()
+            messages[index].completion(.success((data, response)))
         }
     }
 }

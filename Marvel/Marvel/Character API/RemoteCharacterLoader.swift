@@ -16,6 +16,7 @@ public final class RemoteCharacterLoader {
     
     public enum Error: Swift.Error {
         case connectivity
+        case invalidData
     }
     
     public init(client: HTTPClient) {
@@ -23,8 +24,15 @@ public final class RemoteCharacterLoader {
     }
     
     public func load(from url: URL, completion: @escaping ((Result<CharacterItem, Error>) -> Void)) {
-        client.get(url: url) { _ in
-            completion(.failure(.connectivity))
+        client.get(url: url) { result in
+            switch result {
+            case let .success((_, response)):
+                if response.statusCode != 200 {
+                    completion(.failure(.invalidData))
+                }
+            case .failure(_):
+                completion(.failure(.connectivity))
+            }
         }
     }
 }
