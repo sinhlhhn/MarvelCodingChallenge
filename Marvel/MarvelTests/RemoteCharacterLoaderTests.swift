@@ -53,16 +53,16 @@ class RemoteCharacterLoaderTests: XCTestCase {
         return (sut, client)
     }
     
-    private func expect(_ sut: RemoteCharacterLoader, completionWith expectedResult: Result<CharacterItem, RemoteCharacterLoader.Error>, action: (() -> Void)) {
+    private func expect(_ sut: RemoteCharacterLoader, completionWith expectedResult: Result<CharacterItem, RemoteCharacterLoader.Error>, action: (() -> Void), file: StaticString = #filePath, line: UInt = #line) {
         let url = URL(string: "https://any-url.com")!
         let exp = expectation(description: "wait for completion")
         
         sut.load(from: url) { result in
             switch (result, expectedResult) {
             case let (.failure(error), .failure(expectedError)):
-                XCTAssertEqual(error, expectedError)
+                XCTAssertEqual(error, expectedError, file: file, line: line)
             default:
-                XCTFail("Expected \(expectedResult) got \(result) instead")
+                XCTFail("Expected \(expectedResult) got \(result) instead", file: file, line: line)
             }
             exp.fulfill()
         }
