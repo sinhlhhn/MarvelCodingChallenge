@@ -83,6 +83,24 @@ class RemoteCharacterLoaderTests: XCTestCase {
         }
     }
     
+    func test_load_doesNotDeliverResultAfterInstanceHasBeenDeallocated() {
+        let url = URL(string: "https://any-url.com")!
+        let client = HTTPClientSpy()
+        var sut: RemoteCharacterLoader? = RemoteCharacterLoader(client: client)
+        
+        var capturedResult: Result<[CharacterItem], RemoteCharacterLoader.Error>?
+        
+        sut?.load(from: url, completion: { result in
+            capturedResult = result
+        })
+        
+        sut = nil
+        
+        client.completionWith(data: Data())
+        
+        XCTAssertNil(capturedResult)
+    }
+    
     //MARK: - Helpers
     
     private func makeSUT() -> (RemoteCharacterLoader, HTTPClientSpy) {
