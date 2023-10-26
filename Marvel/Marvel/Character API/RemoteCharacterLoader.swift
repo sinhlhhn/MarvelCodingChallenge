@@ -7,10 +7,6 @@
 
 import Foundation
 
-public protocol HTTPClient {
-    func get(url: URL, completion: @escaping ((Result<(Data, HTTPURLResponse), Error>) -> Void))
-}
-
 public final class RemoteCharacterLoader {
     private let client: HTTPClient
     
