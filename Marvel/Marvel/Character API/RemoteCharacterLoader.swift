@@ -23,7 +23,7 @@ public final class RemoteCharacterLoader {
         self.client = client
     }
     
-    public func load(from url: URL, completion: @escaping ((Result<CharacterItem, Error>) -> Void)) {
+    public func load(from url: URL, completion: @escaping ((Result<[CharacterItem], Error>) -> Void)) {
         client.get(url: url) { result in
             switch result {
             case let .success((data, response)):

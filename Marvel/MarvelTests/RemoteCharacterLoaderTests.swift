@@ -62,7 +62,7 @@ class RemoteCharacterLoaderTests: XCTestCase {
         return (sut, client)
     }
     
-    private func expect(_ sut: RemoteCharacterLoader, completionWith expectedResult: Result<CharacterItem, RemoteCharacterLoader.Error>, action: (() -> Void), file: StaticString = #filePath, line: UInt = #line) {
+    private func expect(_ sut: RemoteCharacterLoader, completionWith expectedResult: Result<[CharacterItem], RemoteCharacterLoader.Error>, action: (() -> Void), file: StaticString = #filePath, line: UInt = #line) {
         let url = URL(string: "https://any-url.com")!
         let exp = expectation(description: "wait for completion")
         
