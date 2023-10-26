@@ -110,10 +110,18 @@
 		22B7DDDE2AEA2B9B00F233EF /* MarvelTests */ = {
 			isa = PBXGroup;
 			children = (
+				22D787472AEA83AE001F7B6F /* Character API */,
+			);
+			path = MarvelTests;
+			sourceTree = "<group>";
+		};
+		22D787472AEA83AE001F7B6F /* Character API */ = {
+			isa = PBXGroup;
+			children = (
 				22B7DDDF2AEA2B9B00F233EF /* RemoteCharacterLoaderTests.swift */,
 				22D787452AEA74F4001F7B6F /* CharacterEndpointTests.swift */,
 			);
-			path = MarvelTests;
+			path = "Character API";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
