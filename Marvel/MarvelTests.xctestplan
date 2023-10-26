@@ -1,0 +1,34 @@
+{
+  "configurations" : [
+    {
+      "id" : "91D69F7B-C120-4C86-94F0-80DEF5CB7EAE",
+      "name" : "Test Scheme Action",
+      "options" : {
+
+      }
+    }
+  ],
+  "defaultOptions" : {
+    "codeCoverage" : {
+      "targets" : [
+        {
+          "containerPath" : "container:Marvel.xcodeproj",
+          "identifier" : "22B7DDD12AEA2B9B00F233EF",
+          "name" : "Marvel"
+        }
+      ]
+    },
+    "testExecutionOrdering" : "random"
+  },
+  "testTargets" : [
+    {
+      "parallelizable" : true,
+      "target" : {
+        "containerPath" : "container:Marvel.xcodeproj",
+        "identifier" : "22B7DDD92AEA2B9B00F233EF",
+        "name" : "MarvelTests"
+      }
+    }
+  ],
+  "version" : 1
+}

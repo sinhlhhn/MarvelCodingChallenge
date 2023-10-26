@@ -51,6 +51,7 @@
 		22D787482AEAA9C3001F7B6F /* URLSessionHTTPClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLSessionHTTPClient.swift; sourceTree = "<group>"; };
 		22D7875C2AEAAD17001F7B6F /* MarvelEndToEndTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MarvelEndToEndTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		22D7875E2AEAAD17001F7B6F /* MarvelEndToEndTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarvelEndToEndTests.swift; sourceTree = "<group>"; };
+		22D787662AEAB768001F7B6F /* MarvelTests.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = MarvelTests.xctestplan; sourceTree = "<group>"; };
 		22E3039F2AEA67C900482469 /* CharacterMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterMapper.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -105,6 +106,7 @@
 		22B7DDC82AEA2B9B00F233EF = {
 			isa = PBXGroup;
 			children = (
+				22D787662AEAB768001F7B6F /* MarvelTests.xctestplan */,
 				22B7DDD42AEA2B9B00F233EF /* Marvel */,
 				22B7DDDE2AEA2B9B00F233EF /* MarvelTests */,
 				22D7875D2AEAAD17001F7B6F /* MarvelEndToEndTests */,
