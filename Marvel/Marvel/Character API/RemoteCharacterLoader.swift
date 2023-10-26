@@ -26,8 +26,8 @@ public final class RemoteCharacterLoader {
     public func load(from url: URL, completion: @escaping ((Result<CharacterItem, Error>) -> Void)) {
         client.get(url: url) { result in
             switch result {
-            case let .success((_, response)):
-                if response.statusCode != 200 {
+            case let .success((data, response)):
+                if response.statusCode != 200 || data.isEmpty {
                     completion(.failure(.invalidData))
                 }
             case .failure(_):

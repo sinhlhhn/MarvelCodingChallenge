@@ -44,6 +44,15 @@ class RemoteCharacterLoaderTests: XCTestCase {
         }
     }
     
+    func test_load_deliversErrorOn200HTTPResponseWithInvalidData() {
+        let (sut, client) = makeSUT()
+        let invalidData = Data()
+        
+        expect(sut, completionWith: .failure(.invalidData)) {
+            client.completionWith(data: invalidData)
+        }
+    }
+    
     //MARK: - Helpers
     
     private func makeSUT() -> (RemoteCharacterLoader, HTTPClientSpy) {
@@ -90,6 +99,11 @@ class RemoteCharacterLoaderTests: XCTestCase {
         func completionWith(statusCode: Int, at index: Int = 0) {
             let response = HTTPURLResponse(url: requestedURLs[index], statusCode: statusCode, httpVersion: nil, headerFields: nil)!
             let data = Data()
+            messages[index].completion(.success((data, response)))
+        }
+        
+        func completionWith(data: Data, at index: Int = 0) {
+            let response = HTTPURLResponse(url: requestedURLs[index], statusCode: 200, httpVersion: nil, headerFields: nil)!
             messages[index].completion(.success((data, response)))
         }
     }
