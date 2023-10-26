@@ -15,6 +15,7 @@
 		22D787422AEA6E2A001F7B6F /* HTTPClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22D787412AEA6E2A001F7B6F /* HTTPClient.swift */; };
 		22D787442AEA74DB001F7B6F /* CharacterEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22D787432AEA74DB001F7B6F /* CharacterEndpoint.swift */; };
 		22D787462AEA74F4001F7B6F /* CharacterEndpointTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22D787452AEA74F4001F7B6F /* CharacterEndpointTests.swift */; };
+		22D787492AEAA9C3001F7B6F /* URLSessionHTTPClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22D787482AEAA9C3001F7B6F /* URLSessionHTTPClient.swift */; };
 		22E303A02AEA67C900482469 /* CharacterMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22E3039F2AEA67C900482469 /* CharacterMapper.swift */; };
 /* End PBXBuildFile section */
 
@@ -38,6 +39,7 @@
 		22D787412AEA6E2A001F7B6F /* HTTPClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPClient.swift; sourceTree = "<group>"; };
 		22D787432AEA74DB001F7B6F /* CharacterEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterEndpoint.swift; sourceTree = "<group>"; };
 		22D787452AEA74F4001F7B6F /* CharacterEndpointTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterEndpointTests.swift; sourceTree = "<group>"; };
+		22D787482AEAA9C3001F7B6F /* URLSessionHTTPClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLSessionHTTPClient.swift; sourceTree = "<group>"; };
 		22E3039F2AEA67C900482469 /* CharacterMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterMapper.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -76,6 +78,7 @@
 				228702D32AEA430F00E01B44 /* RemoteCharacterLoader.swift */,
 				22E3039F2AEA67C900482469 /* CharacterMapper.swift */,
 				22D787432AEA74DB001F7B6F /* CharacterEndpoint.swift */,
+				22D787482AEAA9C3001F7B6F /* URLSessionHTTPClient.swift */,
 			);
 			path = "Character API";
 			sourceTree = "<group>";
@@ -233,6 +236,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				22D787492AEAA9C3001F7B6F /* URLSessionHTTPClient.swift in Sources */,
 				22B7DDED2AEA3A3500F233EF /* CharacterLoader.swift in Sources */,
 				22D787422AEA6E2A001F7B6F /* HTTPClient.swift in Sources */,
 				228702D42AEA430F00E01B44 /* RemoteCharacterLoader.swift in Sources */,
