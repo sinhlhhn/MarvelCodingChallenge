@@ -8,7 +8,13 @@
 import Foundation
 
 public struct CharacterItem: Equatable {
-    let id: Int
-    let name: String
-    let thumbnail: URL
+    public let id: Int
+    public let name: String
+    public let thumbnail: URL
+    
+    public init(id: Int, name: String, thumbnail: URL) {
+        self.id = id
+        self.name = name
+        self.thumbnail = thumbnail
+    }
 }
