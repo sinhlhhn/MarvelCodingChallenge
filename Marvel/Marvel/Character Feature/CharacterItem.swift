@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct CharacterItem {
+public struct CharacterItem {
     let id: Int
     let name: String
     let thumbnail: URL

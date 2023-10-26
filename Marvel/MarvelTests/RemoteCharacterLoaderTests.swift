@@ -20,9 +20,34 @@ class RemoteCharacterLoaderTests: XCTestCase {
         let url = URL(string: "https://any-url.com")!
         let (sut, client) = makeSUT()
         
-        sut.load(from: url)
+        sut.load(from: url) { _ in }
         
         XCTAssertEqual(client.requestedURLs, [url])
+    }
+    
+    func test_load_deliversErrorOnClientError() {
+        let url = URL(string: "https://any-url.com")!
+        let (sut, client) = makeSUT()
+        
+        var capturedError: RemoteCharacterLoader.Error?
+        
+        let exp = expectation(description: "wait for completion")
+        sut.load(from: url) { result in
+            switch result {
+            case .success(let item):
+                XCTFail("Expected failure got \(item) instead")
+            case .failure(let error):
+                capturedError = error
+            }
+            exp.fulfill()
+        }
+        
+        let error = NSError(domain: "client", code: 0)
+        client.completionWith(error: error)
+        
+        wait(for: [exp], timeout: 1)
+        
+        XCTAssertEqual(capturedError, .connectivity)
     }
     
     //MARK: - Helpers
@@ -35,10 +60,18 @@ class RemoteCharacterLoaderTests: XCTestCase {
     }
     
     private class HTTPClientSpy: HTTPClient {
-        var requestedURLs: [URL] = []
+        private var messages: [(url: URL, completion: (Result<(Data, HTTPURLResponse), Error>) -> Void)] = []
         
-        func get(url: URL) {
-            requestedURLs.append(url)
+        var requestedURLs: [URL] {
+            messages.map { $0.url }
+        }
+        
+        func get(url: URL, completion: @escaping ((Result<(Data, HTTPURLResponse), Error>) -> Void)) {
+            messages.append((url, completion))
+        }
+        
+        func completionWith(error: Error, at index: Int = 0) {
+            messages[index].completion(.failure(error))
         }
     }
 }
