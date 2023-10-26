@@ -7,7 +7,7 @@
 
 import Foundation
 
-public struct CharacterItem {
+public struct CharacterItem: Equatable {
     let id: Int
     let name: String
     let thumbnail: URL

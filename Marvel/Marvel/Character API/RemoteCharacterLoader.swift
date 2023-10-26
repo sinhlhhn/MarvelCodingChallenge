@@ -29,6 +29,8 @@ public final class RemoteCharacterLoader {
             case let .success((data, response)):
                 if response.statusCode != 200 || data.isEmpty {
                     completion(.failure(.invalidData))
+                } else {
+                    completion(.success([]))
                 }
             case .failure(_):
                 completion(.failure(.connectivity))

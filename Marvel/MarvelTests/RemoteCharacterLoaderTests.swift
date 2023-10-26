@@ -53,6 +53,15 @@ class RemoteCharacterLoaderTests: XCTestCase {
         }
     }
     
+    func test_load_deliversNoItemOn200HTTPResponseWithEmptyJSONList() {
+        let (sut, client) = makeSUT()
+        let emptyJSONList = Data("{\"data\":{\"results\":[]}".utf8)
+        
+        expect(sut, completionWith: .success([])) {
+            client.completionWith(data: emptyJSONList)
+        }
+    }
+    
     //MARK: - Helpers
     
     private func makeSUT() -> (RemoteCharacterLoader, HTTPClientSpy) {
@@ -68,6 +77,8 @@ class RemoteCharacterLoaderTests: XCTestCase {
         
         sut.load(from: url) { result in
             switch (result, expectedResult) {
+            case let (.success(item), .success(expectedItem)):
+                XCTAssertEqual(item, expectedItem, file: file, line: line)
             case let (.failure(error), .failure(expectedError)):
                 XCTAssertEqual(error, expectedError, file: file, line: line)
             default:
