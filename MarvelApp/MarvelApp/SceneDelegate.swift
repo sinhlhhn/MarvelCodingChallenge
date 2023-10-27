@@ -14,13 +14,13 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     var window: UIWindow?
 
     private let baseURL = URL(string: "https://gateway.marvel.com:443")!
-    private let client = URLSessionHTTPClient(session: URLSession(configuration: .ephemeral))
+    private let client = URLSessionHTTPClient(session: URLSession.shared)
     private lazy var url = CharacterEndpoint.get.url(baseURL: baseURL)
     private lazy var remoteCharacterLoader: RemoteCharacterLoader = {
         RemoteCharacterLoader(url: url, client: client)
     }()
     
-    private let remoteImageLoader = RemoteImageLoader(session: URLSession(configuration: .ephemeral))
+    private let remoteImageLoader = RemoteImageLoader(session: URLSession.shared)
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         
