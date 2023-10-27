@@ -171,13 +171,9 @@
 		228702D22AEA42A600E01B44 /* Character API */ = {
 			isa = PBXGroup;
 			children = (
-				22D787412AEA6E2A001F7B6F /* HTTPClient.swift */,
-				228702D32AEA430F00E01B44 /* RemoteCharacterLoader.swift */,
-				22E3039F2AEA67C900482469 /* CharacterMapper.swift */,
-				22D787432AEA74DB001F7B6F /* CharacterEndpoint.swift */,
-				22D787482AEAA9C3001F7B6F /* URLSessionHTTPClient.swift */,
-				22B5A3312AEB915300FC081C /* CharacterImageDataLoader.swift */,
-				22B5A33C2AEBC9CC00FC081C /* RemoteImageLoader.swift */,
+				22B5A3582AEC0D1E00FC081C /* Shared */,
+				22B5A3572AEC0CD800FC081C /* Character */,
+				22B5A3562AEC0CC900FC081C /* Image */,
 			);
 			path = "Character API";
 			sourceTree = "<group>";
@@ -278,6 +274,34 @@
 			path = ViewModels;
 			sourceTree = "<group>";
 		};
+		22B5A3562AEC0CC900FC081C /* Image */ = {
+			isa = PBXGroup;
+			children = (
+				22B5A3312AEB915300FC081C /* CharacterImageDataLoader.swift */,
+				22B5A33C2AEBC9CC00FC081C /* RemoteImageLoader.swift */,
+			);
+			path = Image;
+			sourceTree = "<group>";
+		};
+		22B5A3572AEC0CD800FC081C /* Character */ = {
+			isa = PBXGroup;
+			children = (
+				22E3039F2AEA67C900482469 /* CharacterMapper.swift */,
+				228702D32AEA430F00E01B44 /* RemoteCharacterLoader.swift */,
+			);
+			path = Character;
+			sourceTree = "<group>";
+		};
+		22B5A3582AEC0D1E00FC081C /* Shared */ = {
+			isa = PBXGroup;
+			children = (
+				22D787412AEA6E2A001F7B6F /* HTTPClient.swift */,
+				22D787432AEA74DB001F7B6F /* CharacterEndpoint.swift */,
+				22D787482AEAA9C3001F7B6F /* URLSessionHTTPClient.swift */,
+			);
+			path = Shared;
+			sourceTree = "<group>";
+		};
 		22B7DDC82AEA2B9B00F233EF = {
 			isa = PBXGroup;
 			children = (
@@ -307,9 +331,9 @@
 		22B7DDD42AEA2B9B00F233EF /* Marvel */ = {
 			isa = PBXGroup;
 			children = (
-				22B5A3432AEC00E300FC081C /* Character Detail Feature */,
 				228702D22AEA42A600E01B44 /* Character API */,
 				228702D12AEA426900E01B44 /* Character Feature */,
+				22B5A3432AEC00E300FC081C /* Character Detail Feature */,
 			);
 			path = Marvel;
 			sourceTree = "<group>";

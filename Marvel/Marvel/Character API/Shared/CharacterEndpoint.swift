@@ -10,21 +10,23 @@ import CryptoKit
 
 public enum CharacterEndpoint {
     case get
+    case getDetail(CharacterItem)
     
     private var publicKey: String { "" }
     private var privateKey: String { "" }
     
     public func url(baseURL: URL) -> URL {
+        var components = URLComponents()
+        components.scheme = baseURL.scheme
+        components.host = baseURL.host()
+        components.queryItems = makeQueries()
         switch self {
-            case .get:
-            var components = URLComponents()
-            components.scheme = baseURL.scheme
-            components.host = baseURL.host()
+        case .get:
             components.path = baseURL.path() + "/v1/public/characters"
-            components.queryItems = makeQueries()
-            
-            return components.url!
+        case let .getDetail(item):
+            components.path = baseURL.path() + "/v1/public/characters/\(item.id)"
         }
+        return components.url!
     }
     
     private func makeQueries() -> [URLQueryItem] {
