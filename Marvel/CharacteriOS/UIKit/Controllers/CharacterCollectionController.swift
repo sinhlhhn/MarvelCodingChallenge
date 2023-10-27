@@ -36,7 +36,6 @@ public class CharacterCollectionController: UICollectionViewController {
     private var dataSource: UICollectionViewDiffableDataSource<Section, CharacterImageCellController>?
     
     private var refreshController: CharacterRefreshViewController?
-    private var tasks: [IndexPath: CharacterImageCellController] = [:]
     
     public convenience init(refreshController: CharacterRefreshViewController) {
         self.init(collectionViewLayout: .init())
@@ -65,7 +64,7 @@ public class CharacterCollectionController: UICollectionViewController {
     }
     
     public override func collectionView(_ collectionView: UICollectionView, didEndDisplaying cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
-        tasks[indexPath]?.cancelRequest()
+        dataSource?.itemIdentifier(for: indexPath)?.cancelRequest()
     }
     
     public override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
@@ -80,8 +79,7 @@ extension CharacterCollectionController {
     }
     
     private func configureDataSource() {
-        let cellRegistration = UICollectionView.CellRegistration<CharacterCollectionCell, CharacterImageCellController>(cellNib: UINib(nibName: "CharacterCollectionCell", bundle: Bundle(for: CharacterCollectionCell.self))) { [weak self] (cell, indexPath, controller) in
-            self?.tasks[indexPath] = controller
+        let cellRegistration = UICollectionView.CellRegistration<CharacterCollectionCell, CharacterImageCellController>(cellNib: UINib(nibName: "CharacterCollectionCell", bundle: Bundle(for: CharacterCollectionCell.self))) { (cell, indexPath, controller) in
             controller.configure(cell: cell)
         }
         
