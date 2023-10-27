@@ -9,6 +9,8 @@ import UIKit
 
 class CharacterCollectionCell: UICollectionViewCell {
 
+    @IBOutlet weak var characterNameLabel: UILabel!
+    @IBOutlet weak var characterImageContainerView: UIView!
     @IBOutlet weak var characterImage: UIImageView!
     @IBOutlet public var retryButton: UIButton!
     
