@@ -17,11 +17,11 @@ public final class CharacterRefreshViewController: NSObject {
 
     private let characterLoader: CharacterLoader
 
-    init(characterLoader: CharacterLoader) {
+    public init(characterLoader: CharacterLoader) {
         self.characterLoader = characterLoader
     }
 
-    var onRefresh: (([CharacterItem]) -> Void)?
+    public var onRefresh: (([CharacterItem]) -> Void)?
 
     @objc func refresh() {
         view.beginRefreshing()
