@@ -67,6 +67,11 @@ public class CharacterCollectionController: UICollectionViewController {
     public override func collectionView(_ collectionView: UICollectionView, didEndDisplaying cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
         tasks[indexPath]?.cancelRequest()
     }
+    
+    public override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        guard let selectedItem = dataSource?.itemIdentifier(for: indexPath) else { return }
+        selectedItem.selectItem()
+    }
 }
 
 extension CharacterCollectionController {

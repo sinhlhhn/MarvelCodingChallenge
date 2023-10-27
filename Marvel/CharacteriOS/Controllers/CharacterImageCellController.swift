@@ -15,10 +15,13 @@ public class CharacterImageCellController {
     private var task: CharacterImageDataLoaderTask?
     private let item: CharacterItem
     
-    public init(id: AnyHashable, imageLoader: CharacterImageDataLoader, item: CharacterItem) {
+    private let onSelect: () -> Void
+    
+    public init(id: AnyHashable, imageLoader: CharacterImageDataLoader, item: CharacterItem, onSelect: @escaping () -> Void) {
         self.id = id
         self.imageLoader = imageLoader
         self.item = item
+        self.onSelect = onSelect
     }
     
     func configure(cell: CharacterCollectionCell) {
@@ -57,6 +60,11 @@ public class CharacterImageCellController {
         task?.cancel()
         task = nil
     }
+    
+    func selectItem() {
+        onSelect()
+    }
+    
 }
 
 extension CharacterImageCellController: Equatable {
