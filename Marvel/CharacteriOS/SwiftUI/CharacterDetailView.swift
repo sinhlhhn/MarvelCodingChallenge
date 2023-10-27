@@ -79,10 +79,3 @@ public class CharacterDetailViewModel: ObservableObject {
         }
     }
 }
-
-struct CharacterDetailCell: View {
-    let comic: String
-    var body: some View {
-        Text(comic)
-    }
-}
