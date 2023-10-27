@@ -28,15 +28,14 @@ public final class CharacterRefreshViewController: NSObject {
         onError?(nil)
         view.beginRefreshing()
         characterLoader.load { [weak self] result in
-            DispatchQueue.main.async {
-                switch result {
-                case let .success(items):
-                    self?.onRefresh?(items)
-                case let .failure(error):
-                    self?.onError?(error.localizedDescription)
-                }
-                self?.view.endRefreshing()
+            switch result {
+            case let .success(items):
+                self?.onRefresh?(items)
+            case let .failure(error):
+                self?.onError?(error.localizedDescription)
             }
+            self?.view.endRefreshing()
+            
         }
     }
 }

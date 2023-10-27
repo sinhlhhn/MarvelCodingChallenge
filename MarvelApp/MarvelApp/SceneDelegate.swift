@@ -39,7 +39,10 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     }
     
     private func makeRootView() -> UIViewController {
-        let vc = CharacterUIComposer.characterComposeWith(characterLoader: remoteCharacterLoader, imageLoader: remoteImageLoader, onSelect: showDetail)
+        let vc = CharacterUIComposer.characterComposeWith(
+            characterLoader: MainQueueDispatchDecorator(decoratee: remoteCharacterLoader),
+            imageLoader: MainQueueDispatchDecorator(decoratee: remoteImageLoader),
+            onSelect: showDetail)
         vc.title = "Marvel Heros"
         
         return vc
@@ -47,7 +50,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     
     private func showDetail(item: CharacterItem) {
         let url = CharacterEndpoint.getDetail(item).url(baseURL: baseURL)
-        let vc = CharacterUIComposer.characterDetailComposeWith(url: url, client: client)
+        let vc = CharacterUIComposer.characterDetailComposeWith(
+            url: url,
+            client: MainQueueDispatchDecorator(decoratee: client))
         vc.title = "Character Bio"
         navigationController.pushViewController(vc, animated: true)
     }

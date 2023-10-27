@@ -16,6 +16,7 @@
 		22B5A32C2AEB731B00FC081C /* Marvel.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 22B5A3292AEB731B00FC081C /* Marvel.framework */; };
 		22B5A32D2AEB731B00FC081C /* Marvel.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 22B5A3292AEB731B00FC081C /* Marvel.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		22B5A33F2AEBCAF400FC081C /* Composer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22B5A33E2AEBCAF400FC081C /* Composer.swift */; };
+		22B5A35A2AEC11A800FC081C /* MainQueueDispatchDecorator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22B5A3592AEC11A800FC081C /* MainQueueDispatchDecorator.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -43,6 +44,7 @@
 		22B5A3282AEB731B00FC081C /* CharacteriOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = CharacteriOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		22B5A3292AEB731B00FC081C /* Marvel.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Marvel.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		22B5A33E2AEBCAF400FC081C /* Composer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Composer.swift; sourceTree = "<group>"; };
+		22B5A3592AEC11A800FC081C /* MainQueueDispatchDecorator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainQueueDispatchDecorator.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -81,6 +83,7 @@
 				22B5A3132AEB72C200FC081C /* AppDelegate.swift */,
 				22B5A3152AEB72C200FC081C /* SceneDelegate.swift */,
 				22B5A33E2AEBCAF400FC081C /* Composer.swift */,
+				22B5A3592AEC11A800FC081C /* MainQueueDispatchDecorator.swift */,
 				22B5A31C2AEB72C300FC081C /* Assets.xcassets */,
 				22B5A31E2AEB72C300FC081C /* LaunchScreen.storyboard */,
 				22B5A3212AEB72C300FC081C /* Info.plist */,
@@ -168,6 +171,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				22B5A35A2AEC11A800FC081C /* MainQueueDispatchDecorator.swift in Sources */,
 				22B5A3142AEB72C200FC081C /* AppDelegate.swift in Sources */,
 				22B5A3162AEB72C200FC081C /* SceneDelegate.swift in Sources */,
 				22B5A33F2AEBCAF400FC081C /* Composer.swift in Sources */,

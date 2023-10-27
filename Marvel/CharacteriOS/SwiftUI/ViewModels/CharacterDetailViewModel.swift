@@ -29,18 +29,17 @@ public class CharacterDetailViewModel: ObservableObject {
         state = .loading
         client.get(from: url) { [weak self] result in
             guard self != nil else { return }
-            DispatchQueue.main.async {
-                switch result {
-                case let .success((data, response)):
-                    do {
-                        self?.state = .success(try CharacterDetailMapper.map(data, response))
-                    } catch {
-                        self?.state = .failure(error.localizedDescription)
-                    }
-                case let .failure(error):
+            switch result {
+            case let .success((data, response)):
+                do {
+                    self?.state = .success(try CharacterDetailMapper.map(data, response))
+                } catch {
                     self?.state = .failure(error.localizedDescription)
                 }
+            case let .failure(error):
+                self?.state = .failure(error.localizedDescription)
             }
         }
+        
     }
 }

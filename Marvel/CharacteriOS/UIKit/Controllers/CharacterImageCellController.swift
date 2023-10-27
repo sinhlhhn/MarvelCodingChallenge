@@ -32,18 +32,16 @@ public class CharacterImageCellController {
         let loadImage = { [weak self] in
             guard let self = self else { return }
             self.task = self.imageLoader.loadImageData(from: item.thumbnail, completion: { [cell] result in
-                DispatchQueue.main.async {
-                    switch result {
-                    case let .success(data):
-                        
-                        cell.characterImage.image = UIImage(data: data)
-                        cell.retryButton.isHidden = true
-                        
-                    case .failure(_):
-                        cell.retryButton.isHidden = false
-                    }
-                    cell.characterImageContainerView.isShimmering = false
+                switch result {
+                case let .success(data):
+                    
+                    cell.characterImage.image = UIImage(data: data)
+                    cell.retryButton.isHidden = true
+                    
+                case .failure(_):
+                    cell.retryButton.isHidden = false
                 }
+                cell.characterImageContainerView.isShimmering = false
             })
         }
         
