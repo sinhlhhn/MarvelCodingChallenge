@@ -12,8 +12,8 @@ public enum CharacterEndpoint {
     case get
     case getDetail(CharacterItem)
     
-    private var publicKey: String { "" }
-    private var privateKey: String { "" }
+    private var publicKey: String { "15d403f63d44d387609f44740a90a18b" }
+    private var privateKey: String { "3d21f30d1b17d7ec79192adf9d03f532b017210e" }
     
     public func url(baseURL: URL) -> URL {
         var components = URLComponents()
