@@ -46,6 +46,10 @@ public class CharacterImageCellController {
         
         cell.onRetry = loadImage
         
+        cell.onReuse = { [weak self] in
+            self?.cancelRequest()
+        }
+        
         loadImage()
     }
     

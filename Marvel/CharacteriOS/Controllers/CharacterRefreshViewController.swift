@@ -22,13 +22,18 @@ public final class CharacterRefreshViewController: NSObject {
     }
 
     public var onRefresh: (([CharacterItem]) -> Void)?
+    public var onError: ((String?) -> Void)?
 
     @objc func refresh() {
+        onError?(nil)
         view.beginRefreshing()
         characterLoader.load { [weak self] result in
             DispatchQueue.main.async {
-                if let items = try? result.get() {
+                switch result {
+                case let .success(items):
                     self?.onRefresh?(items)
+                case let .failure(error):
+                    self?.onError?(error.localizedDescription)
                 }
                 self?.view.endRefreshing()
             }

@@ -14,6 +14,25 @@ public class CharacterCollectionController: UICollectionViewController {
         case character
     }
     
+    private lazy var errorLabel: UILabel = {
+        let label = UILabel()
+        label.numberOfLines = 0
+        label.textAlignment = .center
+        label.backgroundColor = .red
+        view.addSubview(label)
+        
+        label.translatesAutoresizingMaskIntoConstraints = false
+        
+        NSLayoutConstraint.activate([
+            label.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            label.centerYAnchor.constraint(equalTo: view.centerYAnchor),
+            label.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
+            view.trailingAnchor.constraint(equalTo: label.trailingAnchor, constant: 16)
+        ])
+        
+        return label
+    }()
+    
     private var dataSource: UICollectionViewDiffableDataSource<Section, CharacterImageCellController>?
     
     private var refreshController: CharacterRefreshViewController?
@@ -38,6 +57,11 @@ public class CharacterCollectionController: UICollectionViewController {
         snapshot.appendSections([.character])
         snapshot.appendItems(items)
         dataSource?.apply(snapshot, animatingDifferences: false)
+    }
+    
+    public func display(error: String?) {
+        errorLabel.isHidden = error == nil
+        errorLabel.text = error
     }
     
     public override func collectionView(_ collectionView: UICollectionView, didEndDisplaying cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {

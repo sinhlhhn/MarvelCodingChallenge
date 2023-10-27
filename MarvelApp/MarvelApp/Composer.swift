@@ -21,6 +21,10 @@ public class CharacterUIComposer {
             characterVC?.display(items: cellControllers)
         }
         
+        refreshController.onError = { [weak characterVC] error in
+            characterVC?.display(error: error)
+        }
+        
         return characterVC
     }
 }
