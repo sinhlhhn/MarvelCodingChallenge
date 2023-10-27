@@ -15,6 +15,7 @@
 		22B5A3002AEB66AA00FC081C /* Marvel.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 22B7DDD22AEA2B9B00F233EF /* Marvel.framework */; };
 		22B5A3012AEB66AA00FC081C /* Marvel.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 22B7DDD22AEA2B9B00F233EF /* Marvel.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		22B5A3322AEB915300FC081C /* CharacterImageDataLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22B5A3312AEB915300FC081C /* CharacterImageDataLoader.swift */; };
+		22B5A3352AEB92DC00FC081C /* UIView+Shimmering.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22B5A3342AEB92DC00FC081C /* UIView+Shimmering.swift */; };
 		22B7DDDB2AEA2B9B00F233EF /* Marvel.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 22B7DDD22AEA2B9B00F233EF /* Marvel.framework */; };
 		22B7DDE02AEA2B9B00F233EF /* RemoteCharacterLoaderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22B7DDDF2AEA2B9B00F233EF /* RemoteCharacterLoaderTests.swift */; };
 		22B7DDEB2AEA3A1900F233EF /* CharacterItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22B7DDEA2AEA3A1900F233EF /* CharacterItem.swift */; };
@@ -81,6 +82,7 @@
 		22B5A2FA2AEB604700FC081C /* CharacterCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterCollectionCell.swift; sourceTree = "<group>"; };
 		22B5A2FB2AEB604700FC081C /* CharacterCollectionCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CharacterCollectionCell.xib; sourceTree = "<group>"; };
 		22B5A3312AEB915300FC081C /* CharacterImageDataLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterImageDataLoader.swift; sourceTree = "<group>"; };
+		22B5A3342AEB92DC00FC081C /* UIView+Shimmering.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Shimmering.swift"; sourceTree = "<group>"; };
 		22B7DDD22AEA2B9B00F233EF /* Marvel.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Marvel.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		22B7DDDA2AEA2B9B00F233EF /* MarvelTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MarvelTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		22B7DDDF2AEA2B9B00F233EF /* RemoteCharacterLoaderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteCharacterLoaderTests.swift; sourceTree = "<group>"; };
@@ -164,6 +166,7 @@
 		22B5A2DC2AEB3BA300FC081C /* CharacteriOS */ = {
 			isa = PBXGroup;
 			children = (
+				22B5A3332AEB92CE00FC081C /* Helpers */,
 				22B5A3052AEB70B800FC081C /* Controllers */,
 				22B5A3062AEB70C700FC081C /* Views */,
 			);
@@ -199,6 +202,14 @@
 				22B5A2FB2AEB604700FC081C /* CharacterCollectionCell.xib */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		22B5A3332AEB92CE00FC081C /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				22B5A3342AEB92DC00FC081C /* UIView+Shimmering.swift */,
+			);
+			path = Helpers;
 			sourceTree = "<group>";
 		};
 		22B7DDC82AEA2B9B00F233EF = {
@@ -468,6 +479,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				22B5A3352AEB92DC00FC081C /* UIView+Shimmering.swift in Sources */,
 				22B5A2F82AEB5FDA00FC081C /* CharacterCollectionController.swift in Sources */,
 				22B5A2FC2AEB604700FC081C /* CharacterCollectionCell.swift in Sources */,
 			);
