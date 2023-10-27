@@ -21,6 +21,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     }()
     
     private let remoteImageLoader = RemoteImageLoader(session: URLSession.shared)
+    
+    private lazy var navigationController = UINavigationController(rootViewController: makeRootView())
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         
@@ -32,12 +34,21 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     }
     
     func configureWindow() {
-        
-        let vc = CharacterUIComposer.characterComposeWith(characterLoader: remoteCharacterLoader, imageLoader: remoteImageLoader)
-        vc.title = "Marvel Heroes"
-        
-        let navigationController = UINavigationController(rootViewController: vc)
         window?.rootViewController = navigationController
         window?.makeKeyAndVisible()
+    }
+    
+    private func makeRootView() -> UIViewController {
+        let vc = CharacterUIComposer.characterComposeWith(characterLoader: remoteCharacterLoader, imageLoader: remoteImageLoader, onSelect: showDetail)
+        vc.title = "Marvel Heros"
+        
+        return vc
+    }
+    
+    private func showDetail(item: CharacterItem) {
+        let url = CharacterEndpoint.getDetail(item).url(baseURL: baseURL)
+        let vc = CharacterUIComposer.characterDetailComposeWith(url: url, client: client)
+        vc.title = "Character Bio"
+        navigationController.pushViewController(vc, animated: true)
     }
 }
