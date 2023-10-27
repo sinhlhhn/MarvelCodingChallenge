@@ -7,7 +7,7 @@
 
 import Foundation
 
-public struct CharacterItem: Equatable {
+public struct CharacterItem: Hashable {
     public let id: Int
     public let name: String
     public let thumbnail: URL

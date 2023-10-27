@@ -9,6 +9,11 @@
 /* Begin PBXBuildFile section */
 		228702D42AEA430F00E01B44 /* RemoteCharacterLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 228702D32AEA430F00E01B44 /* RemoteCharacterLoader.swift */; };
 		22B5A2E32AEB3BA300FC081C /* CharacteriOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 22B5A2DB2AEB3BA300FC081C /* CharacteriOS.framework */; };
+		22B5A2F82AEB5FDA00FC081C /* CharacterCollectionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22B5A2F62AEB5FDA00FC081C /* CharacterCollectionController.swift */; };
+		22B5A2FC2AEB604700FC081C /* CharacterCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22B5A2FA2AEB604700FC081C /* CharacterCollectionCell.swift */; };
+		22B5A2FD2AEB604700FC081C /* CharacterCollectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 22B5A2FB2AEB604700FC081C /* CharacterCollectionCell.xib */; };
+		22B5A3002AEB66AA00FC081C /* Marvel.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 22B7DDD22AEA2B9B00F233EF /* Marvel.framework */; };
+		22B5A3012AEB66AA00FC081C /* Marvel.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 22B7DDD22AEA2B9B00F233EF /* Marvel.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		22B7DDDB2AEA2B9B00F233EF /* Marvel.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 22B7DDD22AEA2B9B00F233EF /* Marvel.framework */; };
 		22B7DDE02AEA2B9B00F233EF /* RemoteCharacterLoaderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22B7DDDF2AEA2B9B00F233EF /* RemoteCharacterLoaderTests.swift */; };
 		22B7DDEB2AEA3A1900F233EF /* CharacterItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22B7DDEA2AEA3A1900F233EF /* CharacterItem.swift */; };
@@ -30,6 +35,13 @@
 			remoteGlobalIDString = 22B5A2DA2AEB3BA300FC081C;
 			remoteInfo = CharacteriOS;
 		};
+		22B5A3022AEB66AA00FC081C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 22B7DDC92AEA2B9B00F233EF /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 22B7DDD12AEA2B9B00F233EF;
+			remoteInfo = Marvel;
+		};
 		22B7DDDC2AEA2B9B00F233EF /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 22B7DDC92AEA2B9B00F233EF /* Project object */;
@@ -46,10 +58,27 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		22B5A3042AEB66AA00FC081C /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				22B5A3012AEB66AA00FC081C /* Marvel.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		228702D32AEA430F00E01B44 /* RemoteCharacterLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteCharacterLoader.swift; sourceTree = "<group>"; };
 		22B5A2DB2AEB3BA300FC081C /* CharacteriOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = CharacteriOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		22B5A2E22AEB3BA300FC081C /* CharacteriOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CharacteriOSTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		22B5A2F62AEB5FDA00FC081C /* CharacterCollectionController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterCollectionController.swift; sourceTree = "<group>"; };
+		22B5A2FA2AEB604700FC081C /* CharacterCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterCollectionCell.swift; sourceTree = "<group>"; };
+		22B5A2FB2AEB604700FC081C /* CharacterCollectionCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CharacterCollectionCell.xib; sourceTree = "<group>"; };
 		22B7DDD22AEA2B9B00F233EF /* Marvel.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Marvel.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		22B7DDDA2AEA2B9B00F233EF /* MarvelTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MarvelTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		22B7DDDF2AEA2B9B00F233EF /* RemoteCharacterLoaderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteCharacterLoaderTests.swift; sourceTree = "<group>"; };
@@ -70,6 +99,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				22B5A3002AEB66AA00FC081C /* Marvel.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -131,6 +161,8 @@
 		22B5A2DC2AEB3BA300FC081C /* CharacteriOS */ = {
 			isa = PBXGroup;
 			children = (
+				22B5A3052AEB70B800FC081C /* Controllers */,
+				22B5A3062AEB70C700FC081C /* Views */,
 			);
 			path = CharacteriOS;
 			sourceTree = "<group>";
@@ -140,6 +172,30 @@
 			children = (
 			);
 			path = CharacteriOSTests;
+			sourceTree = "<group>";
+		};
+		22B5A2FF2AEB66AA00FC081C /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		22B5A3052AEB70B800FC081C /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				22B5A2F62AEB5FDA00FC081C /* CharacterCollectionController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		22B5A3062AEB70C700FC081C /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				22B5A2FA2AEB604700FC081C /* CharacterCollectionCell.swift */,
+				22B5A2FB2AEB604700FC081C /* CharacterCollectionCell.xib */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 		22B7DDC82AEA2B9B00F233EF = {
@@ -152,6 +208,7 @@
 				22B5A2DC2AEB3BA300FC081C /* CharacteriOS */,
 				22B5A2E62AEB3BA300FC081C /* CharacteriOSTests */,
 				22B7DDD32AEA2B9B00F233EF /* Products */,
+				22B5A2FF2AEB66AA00FC081C /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -229,10 +286,12 @@
 				22B5A2D72AEB3BA300FC081C /* Sources */,
 				22B5A2D82AEB3BA300FC081C /* Frameworks */,
 				22B5A2D92AEB3BA300FC081C /* Resources */,
+				22B5A3042AEB66AA00FC081C /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				22B5A3032AEB66AA00FC081C /* PBXTargetDependency */,
 			);
 			name = CharacteriOS;
 			productName = CharacteriOS;
@@ -323,6 +382,7 @@
 				TargetAttributes = {
 					22B5A2DA2AEB3BA300FC081C = {
 						CreatedOnToolsVersion = 14.3.1;
+						LastSwiftMigration = 1430;
 					};
 					22B5A2E12AEB3BA300FC081C = {
 						CreatedOnToolsVersion = 14.3.1;
@@ -366,6 +426,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				22B5A2FD2AEB604700FC081C /* CharacterCollectionCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -404,6 +465,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				22B5A2F82AEB5FDA00FC081C /* CharacterCollectionController.swift in Sources */,
+				22B5A2FC2AEB604700FC081C /* CharacterCollectionCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -453,6 +516,11 @@
 			target = 22B5A2DA2AEB3BA300FC081C /* CharacteriOS */;
 			targetProxy = 22B5A2E42AEB3BA300FC081C /* PBXContainerItemProxy */;
 		};
+		22B5A3032AEB66AA00FC081C /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 22B7DDD12AEA2B9B00F233EF /* Marvel */;
+			targetProxy = 22B5A3022AEB66AA00FC081C /* PBXContainerItemProxy */;
+		};
 		22B7DDDD2AEA2B9B00F233EF /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 22B7DDD12AEA2B9B00F233EF /* Marvel */;
@@ -469,6 +537,7 @@
 		22B5A2EA2AEB3BA400FC081C /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEFINES_MODULE = YES;
@@ -493,7 +562,11 @@
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -502,6 +575,7 @@
 		22B5A2EB2AEB3BA400FC081C /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEFINES_MODULE = YES;
@@ -526,6 +600,9 @@
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -536,6 +613,7 @@
 		22B5A2EC2AEB3BA400FC081C /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 9F2D4H2CZL;
@@ -554,6 +632,7 @@
 		22B5A2ED2AEB3BA400FC081C /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 9F2D4H2CZL;
