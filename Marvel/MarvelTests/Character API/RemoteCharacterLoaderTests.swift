@@ -20,7 +20,7 @@ class RemoteCharacterLoaderTests: XCTestCase {
         let url = URL(string: "https://any-url.com")!
         let (sut, client) = makeSUT()
         
-        sut.load(from: url) { _ in }
+        sut.load() { _ in }
         
         XCTAssertEqual(client.requestedURLs, [url])
     }
@@ -86,13 +86,13 @@ class RemoteCharacterLoaderTests: XCTestCase {
     func test_load_doesNotDeliverResultAfterInstanceHasBeenDeallocated() {
         let url = URL(string: "https://any-url.com")!
         let client = HTTPClientSpy()
-        var sut: RemoteCharacterLoader? = RemoteCharacterLoader(client: client)
+        var sut: RemoteCharacterLoader? = RemoteCharacterLoader(url: url, client: client)
         
         var capturedResult: Result<[CharacterItem], Error>?
         
-        sut?.load(from: url, completion: { result in
+        sut?.load { result in
             capturedResult = result
-        })
+        }
         
         sut = nil
         
@@ -104,8 +104,9 @@ class RemoteCharacterLoaderTests: XCTestCase {
     //MARK: - Helpers
     
     private func makeSUT() -> (RemoteCharacterLoader, HTTPClientSpy) {
+        let url = URL(string: "https://any-url.com")!
         let client = HTTPClientSpy()
-        let sut = RemoteCharacterLoader(client: client)
+        let sut = RemoteCharacterLoader(url: url, client: client)
         
         return (sut, client)
     }
@@ -130,10 +131,9 @@ class RemoteCharacterLoaderTests: XCTestCase {
     }
     
     private func expect(_ sut: RemoteCharacterLoader, completionWith expectedResult: Result<[CharacterItem], RemoteCharacterLoader.Error>, action: (() -> Void), file: StaticString = #filePath, line: UInt = #line) {
-        let url = URL(string: "https://any-url.com")!
         let exp = expectation(description: "wait for completion")
         
-        sut.load(from: url) { result in
+        sut.load { result in
             switch (result, expectedResult) {
             case let (.success(item), .success(expectedItem)):
                 XCTAssertEqual(item, expectedItem, file: file, line: line)

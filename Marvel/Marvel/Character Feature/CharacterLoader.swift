@@ -8,5 +8,5 @@
 import Foundation
 
 public protocol CharacterLoader {
-    func load(from url: URL, completion: @escaping ((Result<[CharacterItem], Error>) -> Void))
+    func load(completion: @escaping ((Result<[CharacterItem], Error>) -> Void))
 }

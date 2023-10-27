@@ -8,6 +8,7 @@
 import Foundation
 
 public final class RemoteCharacterLoader: CharacterLoader {
+    private let url: URL
     private let client: HTTPClient
     
     public enum Error: Swift.Error {
@@ -15,11 +16,12 @@ public final class RemoteCharacterLoader: CharacterLoader {
         case invalidData
     }
     
-    public init(client: HTTPClient) {
+    public init(url: URL, client: HTTPClient) {
+        self.url = url
         self.client = client
     }
     
-    public func load(from url: URL, completion: @escaping ((Result<[CharacterItem], Swift.Error>) -> Void)) {
+    public func load(completion: @escaping ((Result<[CharacterItem], Swift.Error>) -> Void)) {
         client.get(from: url) { [weak self] result in
             guard self != nil else { return }
             switch result {
