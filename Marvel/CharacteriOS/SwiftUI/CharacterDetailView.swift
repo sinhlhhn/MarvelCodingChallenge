@@ -86,33 +86,3 @@ struct CharacterDetailCell: View {
         Text(comic)
     }
 }
-
-struct HeaderCharacterDetailCell: View {
-    let item: CharacterDetailItem
-    
-    var body: some View {
-        VStack {
-            AsyncImage(url: item.thumbnail) { phase in
-                switch phase {
-                case .empty:
-                    ProgressView()
-                case .success(let image):
-                    image.resizable()
-                        .frame(maxWidth: .infinity, maxHeight: 300)
-                case .failure:
-                    Text("No Image")
-                @unknown default:
-                    EmptyView()
-                }
-            }
-            Text(item.name)
-        }
-        .listRowBackground(Color.clear)
-    }
-}
-
-//struct CharacterDetailView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        CharacterDetailView(viewModel: <#T##CharacterDetailViewModel#>)
-//    }
-//}
