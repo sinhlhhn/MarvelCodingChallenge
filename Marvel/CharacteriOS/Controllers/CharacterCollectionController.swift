@@ -8,36 +8,59 @@
 import UIKit
 import Marvel
 
-private enum Section: Hashable {
-    case character
-}
-
-public protocol CharacterImageLoader {
-    typealias Result = Swift.Result<Data, Error>
-    func loadImageData(from url: URL, completion: @escaping (Result) -> ())
-}
-
-class CharacterCollectionController: UICollectionViewController {
-    private var dataSource: UICollectionViewDiffableDataSource<Section, CharacterItem>! = nil
+public class CharacterCollectionController: UICollectionViewController {
     
-    private var imageLoader: CharacterImageLoader?
-    
-    convenience init(imageLoader: CharacterImageLoader) {
-        self.init()
-        self.imageLoader = imageLoader
+    private enum Section: Hashable {
+        case character
     }
     
-    override func viewDidLoad() {
+    private var dataSource: UICollectionViewDiffableDataSource<Section, CharacterImageCellController>?
+    
+    private var refreshController: CharacterRefreshViewController?
+    private var tasks: [IndexPath: CharacterImageCellController] = [:]
+    
+    public convenience init(refreshController: CharacterRefreshViewController) {
+        self.init(collectionViewLayout: .init())
+        self.refreshController = refreshController
+    }
+    
+    public override func viewDidLoad() {
         super.viewDidLoad()
         configureHierarchy()
         configureDataSource()
+        
+        collectionView.refreshControl = refreshController?.view
+        refreshController?.refresh()
     }
     
-    func display(models: [CharacterItem]) {
-        var snapshot = NSDiffableDataSourceSnapshot<Section, CharacterItem>()
+    public func display(items: [CharacterImageCellController]) {
+        var snapshot = NSDiffableDataSourceSnapshot<Section, CharacterImageCellController>()
         snapshot.appendSections([.character])
-        snapshot.appendItems(models)
-        dataSource.apply(snapshot, animatingDifferences: false)
+        snapshot.appendItems(items)
+        dataSource?.apply(snapshot, animatingDifferences: false)
+    }
+    
+    public override func collectionView(_ collectionView: UICollectionView, didEndDisplaying cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        tasks[indexPath]?.cancelRequest()
+    }
+}
+
+extension CharacterCollectionController {
+    private func configureHierarchy() {
+        collectionView.collectionViewLayout = createLayout()
+    }
+    
+    private func configureDataSource() {
+        let cellRegistration = UICollectionView.CellRegistration<CharacterCollectionCell, CharacterImageCellController>(cellNib: UINib(nibName: "CharacterCollectionCell", bundle: Bundle(for: CharacterCollectionCell.self))) { [weak self] (cell, indexPath, controller) in
+            self?.tasks[indexPath] = controller
+            controller.configure(cell: cell)
+        }
+        
+        dataSource = UICollectionViewDiffableDataSource<Section, CharacterImageCellController>(collectionView: collectionView) {
+            (collectionView: UICollectionView, indexPath: IndexPath, item: CharacterImageCellController) -> UICollectionViewCell? in
+            let cell = collectionView.dequeueConfiguredReusableCell(using: cellRegistration, for: indexPath, item: item)
+            return cell
+        }
     }
 }
 
@@ -62,39 +85,7 @@ extension CharacterCollectionController {
         }
     }
     
-    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+    public override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
         configureHierarchy()
-    }
-}
-
-extension CharacterCollectionController {
-    private func configureHierarchy() {
-        collectionView.collectionViewLayout = createLayout()
-    }
-    
-    private func configureDataSource() {
-        
-        let cellRegistration = UICollectionView.CellRegistration<CharacterCollectionCell, CharacterItem>(cellNib: UINib(nibName: "CharacterCollectionCell", bundle: nil)) { [weak self] (cell, indexPath, item) in
-            cell.retryButton.isHidden = true
-            cell.characterImage.image = nil
-            self?.imageLoader?.loadImageData(from: item.thumbnail, completion: { result in
-                switch result {
-                case let .success(data):
-                    DispatchQueue.main.async {
-                        cell.characterImage.image = UIImage(data: data)
-                        cell.retryButton.isHidden = true
-                    }
-                case .failure(_):
-                    DispatchQueue.main.async {
-                        cell.retryButton.isHidden = false
-                    }
-                }
-            })
-        }
-        
-        dataSource = UICollectionViewDiffableDataSource<Section, CharacterItem>(collectionView: collectionView) {
-            (collectionView: UICollectionView, indexPath: IndexPath, item: CharacterItem) -> UICollectionViewCell? in
-            return collectionView.dequeueConfiguredReusableCell(using: cellRegistration, for: indexPath, item: item)
-        }
     }
 }
