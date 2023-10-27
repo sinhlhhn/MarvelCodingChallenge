@@ -9,19 +9,19 @@ import UIKit
 import Marvel
 
 public class CharacterImageCellController {
+    private let id: AnyHashable
     private let imageLoader: CharacterImageDataLoader
     
     private var task: CharacterImageDataLoaderTask?
-    private let cell: CharacterCollectionCell
     private let item: CharacterItem
     
-    init(imageLoader: CharacterImageDataLoader, cell: CharacterCollectionCell, item: CharacterItem) {
+    public init(id: AnyHashable, imageLoader: CharacterImageDataLoader, item: CharacterItem) {
+        self.id = id
         self.imageLoader = imageLoader
-        self.cell = cell
         self.item = item
     }
     
-    func configureCell(at indexPath: IndexPath) {
+    func configure(cell: CharacterCollectionCell) {
         cell.retryButton.isHidden = true
         cell.characterImage.image = nil
         cell.characterImageContainerView.isShimmering = true
@@ -49,7 +49,20 @@ public class CharacterImageCellController {
         loadImage()
     }
     
-    deinit {
+    func cancelRequest() {
         task?.cancel()
+        task = nil
+    }
+}
+
+extension CharacterImageCellController: Equatable {
+    public static func == (lhs: CharacterImageCellController, rhs: CharacterImageCellController) -> Bool {
+        lhs.id == rhs.id
+    }
+}
+
+extension CharacterImageCellController: Hashable {
+    public func hash(into hasher: inout Hasher) {
+        hasher.combine(id)
     }
 }
