@@ -87,11 +87,11 @@ final class MarvelEndToEndTests: XCTestCase {
 
         private func thumbnail(at index: Int) -> URL {
             return [
-                URL(string: "http://i.annihil.us/u/prod/marvel/i/mg/c/e0/535fecbbb9784")!,
-                URL(string: "http://i.annihil.us/u/prod/marvel/i/mg/3/20/5232158de5b16")!,
-                URL(string: "http://i.annihil.us/u/prod/marvel/i/mg/6/20/52602f21f29ec")!,
-                URL(string: "http://i.annihil.us/u/prod/marvel/i/mg/b/40/image_not_available")!,
-                URL(string: "http://i.annihil.us/u/prod/marvel/i/mg/9/50/4ce18691cbf04")!
+                URL(string: "http://i.annihil.us/u/prod/marvel/i/mg/c/e0/535fecbbb9784.jpg")!,
+                URL(string: "http://i.annihil.us/u/prod/marvel/i/mg/3/20/5232158de5b16.jpg")!,
+                URL(string: "http://i.annihil.us/u/prod/marvel/i/mg/6/20/52602f21f29ec.jpg")!,
+                URL(string: "http://i.annihil.us/u/prod/marvel/i/mg/b/40/image_not_available.jpg")!,
+                URL(string: "http://i.annihil.us/u/prod/marvel/i/mg/9/50/4ce18691cbf04.jpg")!
             ][index]
         }
     

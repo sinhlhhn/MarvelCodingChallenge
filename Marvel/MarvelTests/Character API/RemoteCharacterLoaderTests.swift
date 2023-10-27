@@ -65,8 +65,8 @@ class RemoteCharacterLoaderTests: XCTestCase {
     func test_load_deliversItemsOn200HTTPResponseWithJSONItems() {
         let (sut, client) = makeSUT()
         
-        let (item0, item0JSON) = makeCharacterJSONItem(id: 0, name: "Iron man", thumbnail: URL(string: "http://any-url0.com")!)
-        let (item1, item1JSON) = makeCharacterJSONItem(id: 1, name: "Spider man", thumbnail: URL(string: "http://any-url1.com")!)
+        let (item0, item0JSON) = makeCharacterJSONItem(id: 0, name: "Iron man", thumbnail: "http://any-url0.com")
+        let (item1, item1JSON) = makeCharacterJSONItem(id: 1, name: "Spider man", thumbnail: "http://any-url1.com")
         
         let itemsJSON = [
             "results": [item0JSON, item1JSON]
@@ -110,11 +110,14 @@ class RemoteCharacterLoaderTests: XCTestCase {
         return (sut, client)
     }
     
-    private func makeCharacterJSONItem(id: Int, name: String, thumbnail: URL) -> (model: CharacterItem, json: [String: Any]) {
-        let item = CharacterItem(id: id, name: name, thumbnail: thumbnail)
+    private func makeCharacterJSONItem(id: Int, name: String, thumbnail: String) -> (model: CharacterItem, json: [String: Any]) {
+        let fileExtension = "jpg"
+        let thumbnailURL = URL(string: "\(thumbnail).\(fileExtension)")!
+        let item = CharacterItem(id: id, name: name, thumbnail: thumbnailURL)
         
         let thumbnailJSON = [
-            "path": item.thumbnail.absoluteString
+            "path": thumbnail,
+            "extension": fileExtension
         ]
         
         let itemJSON = [

@@ -17,7 +17,7 @@ public final class CharacterMapper {
         
         var characterItems: [CharacterItem] {
             data.results.map {
-                CharacterItem(id: $0.id, name: $0.name, thumbnail: URL(string: $0.thumbnail.path)!)
+                CharacterItem(id: $0.id, name: $0.name, thumbnail: $0.thumbnail.url)
             }
         }
         
@@ -33,6 +33,16 @@ public final class CharacterMapper {
 
         private struct Thumbnail: Codable {
             let path: String
+            let fileExtension: String
+            
+            var url: URL {
+                URL(string: "\(path).\(fileExtension)")!
+            }
+            
+            enum CodingKeys: String, CodingKey {
+                case path
+                case fileExtension = "extension"
+            }
         }
     }
     
