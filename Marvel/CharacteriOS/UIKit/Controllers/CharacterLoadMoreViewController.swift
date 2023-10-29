@@ -41,6 +41,6 @@ public final class CharacterLoadMoreViewController {
     }
     
     func loadMore(page: Int) {
-        onLoadMore?(page + 1)
+        onLoadMore?(page)
     }
 }
