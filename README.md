@@ -4,4 +4,7 @@ day 1: ![image](https://github.com/sinhlhhn/MarvelCodingChallenge/assets/6639971
 
 day 2: ![Screenshot 2023-10-27 at 22 17 29](https://github.com/sinhlhhn/MarvelCodingChallenge/assets/66399719/a9522a37-bcc2-4b70-8b42-ad3708ded9e0)
 
+day 3: ![image](https://github.com/sinhlhhn/MarvelCodingChallenge/assets/66399719/a633f62c-d2a8-4220-aeb5-2f4e4ee978cc)
+
+
 
