@@ -9,11 +9,6 @@ import UIKit
 import Marvel
 
 public final class CharacterLoadMoreViewController {
-    private(set) lazy var view: UIRefreshControl = {
-        let view = UIRefreshControl()
-        return view
-    }()
-
     private let characterLoader: CharacterLoader
 
     public init(characterLoader: CharacterLoader) {
@@ -23,12 +18,13 @@ public final class CharacterLoadMoreViewController {
     public var onRefresh: ((Paginated) -> Void)?
     public var onError: ((String?) -> Void)?
     public var onLoadMore: ((Int) -> Void)?
+    
+    private var isLoading: Bool = false
 
     public func loadMore(url: URL) {
-        if view.isRefreshing { return }
+        if isLoading { return }
         onError?(nil)
-        view.beginRefreshing()
-        
+        isLoading = true
         characterLoader.load(from: url, completion: { [weak self]  result in
             switch result {
             case let .success(items):
@@ -36,7 +32,7 @@ public final class CharacterLoadMoreViewController {
             case let .failure(error):
                 self?.onError?(error.localizedDescription)
             }
-            self?.view.endRefreshing()
+            self?.isLoading = false
         })
     }
     
