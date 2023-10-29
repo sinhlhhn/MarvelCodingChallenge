@@ -35,6 +35,7 @@
 		22D787492AEAA9C3001F7B6F /* URLSessionHTTPClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22D787482AEAA9C3001F7B6F /* URLSessionHTTPClient.swift */; };
 		22D7875F2AEAAD17001F7B6F /* MarvelEndToEndTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22D7875E2AEAAD17001F7B6F /* MarvelEndToEndTests.swift */; };
 		22D787602AEAAD17001F7B6F /* Marvel.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 22B7DDD22AEA2B9B00F233EF /* Marvel.framework */; };
+		22D96CA72AEE90CE0038AC48 /* CharacterLoadMoreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22D96CA62AEE90CE0038AC48 /* CharacterLoadMoreViewController.swift */; };
 		22E303A02AEA67C900482469 /* CharacterMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22E3039F2AEA67C900482469 /* CharacterMapper.swift */; };
 /* End PBXBuildFile section */
 
@@ -113,6 +114,7 @@
 		22D7875C2AEAAD17001F7B6F /* MarvelEndToEndTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MarvelEndToEndTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		22D7875E2AEAAD17001F7B6F /* MarvelEndToEndTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarvelEndToEndTests.swift; sourceTree = "<group>"; };
 		22D787662AEAB768001F7B6F /* MarvelTests.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = MarvelTests.xctestplan; sourceTree = "<group>"; };
+		22D96CA62AEE90CE0038AC48 /* CharacterLoadMoreViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterLoadMoreViewController.swift; sourceTree = "<group>"; };
 		22E3039F2AEA67C900482469 /* CharacterMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterMapper.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -207,6 +209,7 @@
 				22B5A2F62AEB5FDA00FC081C /* CharacterCollectionController.swift */,
 				22B5A33A2AEBB6CC00FC081C /* CharacterImageCellController.swift */,
 				22B5A3362AEBA3B800FC081C /* CharacterRefreshViewController.swift */,
+				22D96CA62AEE90CE0038AC48 /* CharacterLoadMoreViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -577,6 +580,7 @@
 				22B5A3512AEC02EB00FC081C /* CharacterDetailCell.swift in Sources */,
 				22B5A3412AEBE4F300FC081C /* CharacterDetailView.swift in Sources */,
 				22B5A3532AEC032000FC081C /* CharacterDetailViewModel.swift in Sources */,
+				22D96CA72AEE90CE0038AC48 /* CharacterLoadMoreViewController.swift in Sources */,
 				22B5A2FC2AEB604700FC081C /* CharacterCollectionCell.swift in Sources */,
 				22B5A33B2AEBB6CC00FC081C /* CharacterImageCellController.swift in Sources */,
 			);

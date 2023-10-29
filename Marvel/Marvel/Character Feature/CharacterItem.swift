@@ -7,6 +7,11 @@
 
 import Foundation
 
+public struct Paginated {
+    public let characters: [CharacterItem]
+    public let isLast: Bool
+}
+
 public struct CharacterItem: Hashable {
     public let id: Int
     public let name: String

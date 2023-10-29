@@ -15,9 +15,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     private let baseURL = URL(string: "https://gateway.marvel.com:443")!
     private let client = URLSessionHTTPClient(session: URLSession.shared)
-    private lazy var url = CharacterEndpoint.get.url(baseURL: baseURL)
     private lazy var remoteCharacterLoader: RemoteCharacterLoader = {
-        RemoteCharacterLoader(url: url, client: client)
+        RemoteCharacterLoader(client: client)
     }()
     
     private let remoteImageLoader = RemoteImageLoader(session: URLSession.shared)
@@ -39,7 +38,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     }
     
     private func makeRootView() -> UIViewController {
-        let vc = CharacterUIComposer.characterComposeWith(
+        let vc = CharacterUIComposer.characterComposeWith(with: baseURL,
             characterLoader: MainQueueDispatchDecorator(decoratee: remoteCharacterLoader),
             imageLoader: MainQueueDispatchDecorator(decoratee: remoteImageLoader),
             onSelect: showDetail)

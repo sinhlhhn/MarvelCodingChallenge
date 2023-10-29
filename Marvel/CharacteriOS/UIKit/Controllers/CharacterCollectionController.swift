@@ -36,10 +36,12 @@ public class CharacterCollectionController: UICollectionViewController {
     private var dataSource: UICollectionViewDiffableDataSource<Section, CharacterImageCellController>?
     
     private var refreshController: CharacterRefreshViewController?
+    private var loadMoreController: CharacterLoadMoreViewController?
     
-    public convenience init(refreshController: CharacterRefreshViewController) {
+    public convenience init(refreshController: CharacterRefreshViewController, loadMoreController: CharacterLoadMoreViewController) {
         self.init(collectionViewLayout: .init())
         self.refreshController = refreshController
+        self.loadMoreController = loadMoreController
     }
     
     public override func viewDidLoad() {
@@ -58,6 +60,13 @@ public class CharacterCollectionController: UICollectionViewController {
         dataSource?.apply(snapshot, animatingDifferences: false)
     }
     
+    public func displayNewItems(items: [CharacterImageCellController]) {
+        guard let dataSource = dataSource else { return }
+        var snapshot = dataSource.snapshot(for: Section.character)
+        snapshot.append(items)
+        dataSource.apply(snapshot, to: Section.character)
+    }
+    
     public func display(error: String?) {
         errorLabel.isHidden = error == nil
         errorLabel.text = error
@@ -70,6 +79,15 @@ public class CharacterCollectionController: UICollectionViewController {
     public override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         guard let selectedItem = dataSource?.itemIdentifier(for: indexPath) else { return }
         selectedItem.selectItem()
+    }
+    
+    public override func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        guard scrollView.isDragging, let dataSource = dataSource else { return }
+        let offsetY = scrollView.contentOffset.y
+        let contentHeight = scrollView.contentSize.height
+        if (offsetY > contentHeight - scrollView.frame.height) {
+            loadMoreController?.loadMore(page: dataSource.snapshot(for: Section.character).items.count)
+        }
     }
 }
 

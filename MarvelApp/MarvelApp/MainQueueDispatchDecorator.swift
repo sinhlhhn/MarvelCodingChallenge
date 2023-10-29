@@ -35,8 +35,8 @@ extension MainQueueDispatchDecorator: CharacterImageDataLoader where T == Charac
 
 extension MainQueueDispatchDecorator: CharacterLoader where T == CharacterLoader {
     
-    func load(completion: @escaping ((Result<[CharacterItem], Error>) -> Void)) {
-        decoratee.load { [weak self] result in
+    func load(from url: URL, completion: @escaping ((Result<Paginated, Error>) -> Void)) {
+        decoratee.load(from: url) { [weak self] result in
             self?.dispatch { completion(result) }
         }
     }

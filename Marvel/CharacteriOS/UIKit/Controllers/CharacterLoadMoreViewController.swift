@@ -1,25 +1,22 @@
 //
-//  CharacterRefreshViewController.swift
+//  CharacterLoadMoreViewController.swift
 //  CharacteriOS
 //
-//  Created by Sam on 27/10/2023.
+//  Created by Sam on 29/10/2023.
 //
 
 import UIKit
 import Marvel
 
-public final class CharacterRefreshViewController: NSObject {
+public final class CharacterLoadMoreViewController {
     private(set) lazy var view: UIRefreshControl = {
         let view = UIRefreshControl()
-        view.addTarget(self, action: #selector(refresh), for: .valueChanged)
         return view
     }()
 
     private let characterLoader: CharacterLoader
-    private let url: URL
 
-    public init(url: URL, characterLoader: CharacterLoader) {
-        self.url = url
+    public init(characterLoader: CharacterLoader) {
         self.characterLoader = characterLoader
     }
 
@@ -27,10 +24,12 @@ public final class CharacterRefreshViewController: NSObject {
     public var onError: ((String?) -> Void)?
     public var onLoadMore: ((Int) -> Void)?
 
-    @objc func refresh() {
+    public func loadMore(url: URL) {
+        if view.isRefreshing { return }
         onError?(nil)
         view.beginRefreshing()
-        characterLoader.load(from: url) { [weak self] result in
+        
+        characterLoader.load(from: url, completion: { [weak self]  result in
             switch result {
             case let .success(items):
                 self?.onRefresh?(items)
@@ -38,12 +37,10 @@ public final class CharacterRefreshViewController: NSObject {
                 self?.onError?(error.localizedDescription)
             }
             self?.view.endRefreshing()
-            
-        }
+        })
     }
     
-    public func loadMore(page: Int) {
-        if view.isRefreshing { return }
+    func loadMore(page: Int) {
         onLoadMore?(page + 1)
     }
 }
