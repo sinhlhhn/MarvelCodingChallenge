@@ -52,8 +52,8 @@ public class CharacterUIComposer {
         return characterVC
     }
     
-    public static func characterDetailComposeWith(url: URL, client: HTTPClient) -> UIHostingController<CharacterDetailView> {
-        let vm = CharacterDetailViewModel(url: url, client: client)
+    public static func characterDetailComposeWith(url: URL, loader: CharacterDetailLoader) -> UIHostingController<CharacterDetailView> {
+        let vm = CharacterDetailViewModel(url: url, loader: loader)
         let view = CharacterDetailView(viewModel: vm)
         
         return UIHostingController(rootView: view)

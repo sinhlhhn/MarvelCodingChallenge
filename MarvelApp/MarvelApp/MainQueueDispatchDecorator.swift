@@ -42,10 +42,10 @@ extension MainQueueDispatchDecorator: CharacterLoader where T == CharacterLoader
     }
 }
 
-extension MainQueueDispatchDecorator: HTTPClient where T == HTTPClient {
+extension MainQueueDispatchDecorator: CharacterDetailLoader where T == CharacterDetailLoader {
     
-    func get(from url: URL, completion: @escaping (HTTPClient.Result) -> Void) {
-        decoratee.get(from: url) { [weak self] result in
+    func load(from url: URL, completion: @escaping ((Result<CharacterDetailItem, Error>) -> Void)) {
+        decoratee.load(from: url) { [weak self] result in
             self?.dispatch { completion(result) }
         }
     }

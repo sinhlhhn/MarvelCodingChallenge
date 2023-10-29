@@ -9,7 +9,7 @@ import SwiftUI
 import Marvel
 
 public class CharacterDetailViewModel: ObservableObject {
-    private let client: HTTPClient
+    private let loader: CharacterDetailLoader
     private let url: URL
     
     enum State {
@@ -20,26 +20,20 @@ public class CharacterDetailViewModel: ObservableObject {
     
     @Published var state: State = .loading
     
-    public init(url: URL, client: HTTPClient) {
-        self.client = client
+    public init(url: URL, loader: CharacterDetailLoader) {
+        self.loader = loader
         self.url = url
     }
     
     func loadData() {
         state = .loading
-        client.get(from: url) { [weak self] result in
-            guard self != nil else { return }
+        loader.load(from: url) { [weak self] result in
             switch result {
-            case let .success((data, response)):
-                do {
-                    self?.state = .success(try CharacterDetailMapper.map(data, response))
-                } catch {
-                    self?.state = .failure(error.localizedDescription)
-                }
+            case let .success(item):
+                self?.state = .success(item)
             case let .failure(error):
                 self?.state = .failure(error.localizedDescription)
             }
         }
-        
     }
 }

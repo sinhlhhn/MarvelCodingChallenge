@@ -19,6 +19,10 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         RemoteCharacterLoader(client: client)
     }()
     
+    private lazy var remoteCharacterDetailLoader: RemoteCharacterDetailLoader = {
+        RemoteCharacterDetailLoader(client: client)
+    }()
+    
     private let remoteImageLoader = RemoteImageLoader(session: URLSession.shared)
     
     private lazy var navigationController = UINavigationController(rootViewController: makeRootView())
@@ -51,7 +55,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let url = CharacterEndpoint.getDetail(item).url(baseURL: baseURL)
         let vc = CharacterUIComposer.characterDetailComposeWith(
             url: url,
-            client: MainQueueDispatchDecorator(decoratee: client))
+            loader: MainQueueDispatchDecorator(decoratee: remoteCharacterDetailLoader))
         vc.title = "Character Bio"
         navigationController.pushViewController(vc, animated: true)
     }

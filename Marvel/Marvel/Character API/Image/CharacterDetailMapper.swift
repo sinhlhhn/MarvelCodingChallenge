@@ -59,11 +59,11 @@ public final class CharacterDetailMapper {
     
     private struct InvalidData: Error {}
     
-    public static func map(_ data: Data, _ response: HTTPURLResponse) throws -> CharacterDetailItem {
-        if response.statusCode == isOK, let root = try? JSONDecoder().decode(Root.self, from: data) {
-            return root.data.results.first!.characterDetailItem
+    public static func map(_ data: Data, _ response: HTTPURLResponse) -> Result<CharacterDetailItem, Error> {
+        if response.statusCode == isOK, let root = try? JSONDecoder().decode(Root.self, from: data), let result = root.data.results.first {
+            return .success(result.characterDetailItem)
+        } else {
+            return .failure(RemoteCharacterLoader.Error.invalidData)
         }
-        
-        throw InvalidData()
     }
 }
