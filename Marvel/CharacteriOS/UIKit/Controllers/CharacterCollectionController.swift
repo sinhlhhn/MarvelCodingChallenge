@@ -82,7 +82,7 @@ public class CharacterCollectionController: UICollectionViewController {
     }
     
     public override func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        guard scrollView.isDragging, let dataSource = dataSource else { return }
+        guard scrollView.isDragging, let dataSource = dataSource, !dataSource.snapshot().itemIdentifiers.isEmpty else { return }
         let offsetY = scrollView.contentOffset.y
         let contentHeight = scrollView.contentSize.height
         if (offsetY > contentHeight - scrollView.frame.height) {
