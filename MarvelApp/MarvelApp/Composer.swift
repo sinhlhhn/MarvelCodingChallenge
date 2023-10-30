@@ -59,3 +59,6 @@ public class CharacterUIComposer {
         return UIHostingController(rootView: view)
     }
 }
+
+extension RemoteLoader: CharacterLoader where Item == Paginated {}
+extension RemoteLoader: CharacterDetailLoader where Item == CharacterDetailItem {}

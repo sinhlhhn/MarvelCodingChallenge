@@ -57,13 +57,15 @@ public final class CharacterDetailMapper {
         }
     }
     
-    private struct InvalidData: Error {}
+    public enum Error: Swift.Error {
+        case invalidData
+    }
     
-    public static func map(_ data: Data, _ response: HTTPURLResponse) -> Result<CharacterDetailItem, Error> {
+    public static func map(_ data: Data, _ response: HTTPURLResponse) -> Result<CharacterDetailItem, Swift.Error> {
         if response.statusCode == isOK, let root = try? JSONDecoder().decode(Root.self, from: data), let result = root.data.results.first {
             return .success(result.characterDetailItem)
         } else {
-            return .failure(RemoteCharacterLoader.Error.invalidData)
+            return .failure(Error.invalidData)
         }
     }
 }

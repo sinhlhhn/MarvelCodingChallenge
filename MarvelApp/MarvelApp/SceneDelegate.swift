@@ -15,12 +15,12 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     private let baseURL = URL(string: "https://gateway.marvel.com:443")!
     private let client = URLSessionHTTPClient(session: URLSession.shared)
-    private lazy var remoteCharacterLoader: RemoteCharacterLoader = {
-        RemoteCharacterLoader(client: client)
+    private lazy var remoteCharacterLoader: RemoteLoader = {
+        RemoteLoader(client: client, mapper: CharacterMapper.map)
     }()
     
-    private lazy var remoteCharacterDetailLoader: RemoteCharacterDetailLoader = {
-        RemoteCharacterDetailLoader(client: client)
+    private lazy var remoteCharacterDetailLoader: RemoteLoader<CharacterDetailItem> = {
+        RemoteLoader(client: client, mapper: CharacterDetailMapper.map)
     }()
     
     private let remoteImageLoader = RemoteImageLoader(session: URLSession.shared)
