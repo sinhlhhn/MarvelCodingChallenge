@@ -14,12 +14,12 @@ final class MarvelEndToEndTests: XCTestCase {
         let receivedResult = getFromURL()
         
         switch receivedResult {
-        case let .success(characters):
-            XCTAssertEqual(characters.count, 20)
+        case let .success(items):
+            XCTAssertEqual(items.characters.count, 20)
             for index in 0...4 {
-                XCTAssertEqual(characters[index].id, id(at: index))
-                XCTAssertEqual(characters[index].name, name(at: index))
-                XCTAssertEqual(characters[index].thumbnail, thumbnail(at: index))
+                XCTAssertEqual(items.characters[index].id, id(at: index))
+                XCTAssertEqual(items.characters[index].name, name(at: index))
+                XCTAssertEqual(items.characters[index].thumbnail, thumbnail(at: index))
             }
         case let .failure(error):
             XCTFail("Expected success, got error \(error)")
@@ -31,11 +31,11 @@ final class MarvelEndToEndTests: XCTestCase {
     //MARK: -Helpers
     
     private func getFromURL(file: StaticString = #filePath,
-                            line: UInt = #line) -> Swift.Result<[CharacterItem], Error>? {
+                            line: UInt = #line) -> Swift.Result<Paginated, Error>? {
         let url = characterTestServerURL
         let client = ephemeralClient()
         
-        var receivedResult: Swift.Result<[CharacterItem], Error>?
+        var receivedResult: Swift.Result<Paginated, Error>?
         
         let exp = expectation(description: "Wait for completion")
         client.get(from: url) { result in
@@ -54,7 +54,7 @@ final class MarvelEndToEndTests: XCTestCase {
     }
     
     private var characterTestServerURL: URL {
-        return CharacterEndpoint.get.url(baseURL: URL(string: "https://gateway.marvel.com:443")!)
+        return CharacterEndpoint.get(0).url(baseURL: URL(string: "https://gateway.marvel.com:443")!)
     }
     
     private func ephemeralClient(file: StaticString = #filePath, line: UInt = #line) -> HTTPClient {
