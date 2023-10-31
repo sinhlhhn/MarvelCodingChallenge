@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		228702D42AEA430F00E01B44 /* RemoteCharacterLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 228702D32AEA430F00E01B44 /* RemoteCharacterLoader.swift */; };
+		228B1E022AF0FA3C00D58FB3 /* RemoteLoaderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 228B1E012AF0FA3C00D58FB3 /* RemoteLoaderTests.swift */; };
 		22B5A2E32AEB3BA300FC081C /* CharacteriOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 22B5A2DB2AEB3BA300FC081C /* CharacteriOS.framework */; };
 		22B5A2F82AEB5FDA00FC081C /* CharacterCollectionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22B5A2F62AEB5FDA00FC081C /* CharacterCollectionController.swift */; };
 		22B5A2FC2AEB604700FC081C /* CharacterCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22B5A2FA2AEB604700FC081C /* CharacterCollectionCell.swift */; };
@@ -87,6 +88,7 @@
 
 /* Begin PBXFileReference section */
 		228702D32AEA430F00E01B44 /* RemoteCharacterLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteCharacterLoader.swift; sourceTree = "<group>"; };
+		228B1E012AF0FA3C00D58FB3 /* RemoteLoaderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteLoaderTests.swift; sourceTree = "<group>"; };
 		22B5A2DB2AEB3BA300FC081C /* CharacteriOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = CharacteriOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		22B5A2E22AEB3BA300FC081C /* CharacteriOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CharacteriOSTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		22B5A2F62AEB5FDA00FC081C /* CharacterCollectionController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterCollectionController.swift; sourceTree = "<group>"; };
@@ -357,6 +359,7 @@
 			children = (
 				22B7DDDF2AEA2B9B00F233EF /* RemoteCharacterLoaderTests.swift */,
 				22D787452AEA74F4001F7B6F /* CharacterEndpointTests.swift */,
+				228B1E012AF0FA3C00D58FB3 /* RemoteLoaderTests.swift */,
 			);
 			path = "Character API";
 			sourceTree = "<group>";
@@ -620,6 +623,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				22D787462AEA74F4001F7B6F /* CharacterEndpointTests.swift in Sources */,
+				228B1E022AF0FA3C00D58FB3 /* RemoteLoaderTests.swift in Sources */,
 				22B7DDE02AEA2B9B00F233EF /* RemoteCharacterLoaderTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
