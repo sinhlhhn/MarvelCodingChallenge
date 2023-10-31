@@ -12,7 +12,7 @@ final class CharacterEndpointTests: XCTestCase {
     func test_character_endpointURL() {
         let baseURL = URL(string: "http://base-url.com")!
         
-        let receive = CharacterEndpoint.get.url(baseURL: baseURL)
+        let receive = CharacterEndpoint.get(nil).url(baseURL: baseURL)
         
         XCTAssertEqual(receive.scheme, "http", "scheme")
         XCTAssertEqual(receive.host, "base-url.com", "host")
