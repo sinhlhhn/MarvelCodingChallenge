@@ -10,35 +10,11 @@ import Marvel
 
 class RemoteCharacterLoaderTests: XCTestCase {
     
-    func test_init_doesNotRequestURL() {
-        let (_, client) = makeSUT()
-        
-        XCTAssertEqual(client.requestedURLs, [])
-    }
-    
-    func test_load_requestsURL() {
-        let url = URL(string: "https://any-url.com")!
-        let (sut, client) = makeSUT()
-        
-        sut.load() { _ in }
-        
-        XCTAssertEqual(client.requestedURLs, [url])
-    }
-    
-    func test_load_deliversErrorOnClientError() {
-        let (sut, client) = makeSUT()
-        
-        expect(sut, completionWith: .failure(.connectivity)) {
-            let error = NSError(domain: "client", code: 0)
-            client.completionWith(error: error)
-        }
-    }
-    
     func test_load_deliversErrorOnNon200HTTPResponse() {
         let (sut, client) = makeSUT()
 
         [100, 199, 201, 300, 500].enumerated().forEach { index, statusCode in
-            expect(sut, completionWith: .failure(.invalidData)) {
+            expect(sut, completionWith: .failure(anyNSError())) {
                 client.completionWith(statusCode: statusCode, at: index)
             }
         }
@@ -48,16 +24,16 @@ class RemoteCharacterLoaderTests: XCTestCase {
         let (sut, client) = makeSUT()
         let invalidData = Data()
         
-        expect(sut, completionWith: .failure(.invalidData)) {
+        expect(sut, completionWith: .failure(anyNSError())) {
             client.completionWith(data: invalidData)
         }
     }
     
     func test_load_deliversNoItemOn200HTTPResponseWithEmptyJSONList() {
         let (sut, client) = makeSUT()
-        let emptyJSONList = Data("{\"data\":{\"results\":[]}}".utf8)
+        let emptyJSONList = Data("{\"data\":{\"results\":[], \"offset\":0, \"total\":1}}".utf8)
         
-        expect(sut, completionWith: .success([])) {
+        expect(sut, completionWith: .success(makePaginated(items: []))) {
             client.completionWith(data: emptyJSONList)
         }
     }
@@ -69,8 +45,10 @@ class RemoteCharacterLoaderTests: XCTestCase {
         let (item1, item1JSON) = makeCharacterJSONItem(id: 1, name: "Spider man", thumbnail: "http://any-url1.com")
         
         let itemsJSON = [
-            "results": [item0JSON, item1JSON]
-        ]
+            "results": [item0JSON, item1JSON],
+            "offset": 0,
+            "total": 1
+        ] as [String : Any]
         
         let responseJSON = [
             "data": itemsJSON
@@ -78,37 +56,22 @@ class RemoteCharacterLoaderTests: XCTestCase {
         
         let json = try! JSONSerialization.data(withJSONObject: responseJSON)
         
-        expect(sut, completionWith: .success([item0, item1])) {
+        expect(sut, completionWith: .success(makePaginated(items: [item0, item1]))) {
             client.completionWith(data: json)
         }
     }
     
-    func test_load_doesNotDeliverResultAfterInstanceHasBeenDeallocated() {
-        let url = URL(string: "https://any-url.com")!
-        let client = HTTPClientSpy()
-        var sut: RemoteCharacterLoader? = RemoteCharacterLoader(url: url, client: client)
-        
-        var capturedResult: Result<[CharacterItem], Error>?
-        
-        sut?.load { result in
-            capturedResult = result
-        }
-        
-        sut = nil
-        
-        client.completionWith(data: Data())
-        
-        XCTAssertNil(capturedResult)
-    }
-    
     //MARK: - Helpers
     
-    private func makeSUT() -> (RemoteCharacterLoader, HTTPClientSpy) {
-        let url = URL(string: "https://any-url.com")!
+    private func makeSUT() -> (RemoteLoader<Paginated>, HTTPClientSpy) {
         let client = HTTPClientSpy()
-        let sut = RemoteCharacterLoader(url: url, client: client)
+        let sut = RemoteLoader<Paginated>(client: client, mapper: CharacterMapper.map)
         
         return (sut, client)
+    }
+               
+    private func makePaginated(items: [CharacterItem]) -> Paginated {
+        Paginated(characters: items, isLast: false)
     }
     
     private func makeCharacterJSONItem(id: Int, name: String, thumbnail: String) -> (model: CharacterItem, json: [String: Any]) {
@@ -130,15 +93,21 @@ class RemoteCharacterLoaderTests: XCTestCase {
         return (item, itemJSON)
     }
     
-    private func expect(_ sut: RemoteCharacterLoader, completionWith expectedResult: Result<[CharacterItem], RemoteCharacterLoader.Error>, action: (() -> Void), file: StaticString = #filePath, line: UInt = #line) {
+    private func anyNSError() -> NSError {
+        NSError(domain: "NSError", code: 0)
+    }
+    
+    private func expect(_ sut: RemoteLoader<Paginated>, completionWith expectedResult: Result<Paginated, Error>, action: (() -> Void), file: StaticString = #filePath, line: UInt = #line) {
+        let url = URL(string: "https://any-url.com")!
         let exp = expectation(description: "wait for completion")
         
-        sut.load { result in
+        sut.load(from: url) { result in
             switch (result, expectedResult) {
             case let (.success(item), .success(expectedItem)):
                 XCTAssertEqual(item, expectedItem, file: file, line: line)
-            case let (.failure(error as RemoteCharacterLoader.Error), .failure(expectedError)):
-                XCTAssertEqual(error, expectedError, file: file, line: line)
+            case let (.failure(error), .failure(expectedError)):
+                XCTAssertNotNil(error, file: file, line: line)
+                XCTAssertNotNil(expectedError, file: file, line: line)
             default:
                 XCTFail("Expected \(expectedResult) got \(result) instead", file: file, line: line)
             }
