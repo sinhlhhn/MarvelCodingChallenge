@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		228702D42AEA430F00E01B44 /* RemoteCharacterLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 228702D32AEA430F00E01B44 /* RemoteCharacterLoader.swift */; };
+		228702D42AEA430F00E01B44 /* RemoteLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 228702D32AEA430F00E01B44 /* RemoteLoader.swift */; };
 		228B1E022AF0FA3C00D58FB3 /* RemoteLoaderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 228B1E012AF0FA3C00D58FB3 /* RemoteLoaderTests.swift */; };
 		22B5A2E32AEB3BA300FC081C /* CharacteriOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 22B5A2DB2AEB3BA300FC081C /* CharacteriOS.framework */; };
 		22B5A2F82AEB5FDA00FC081C /* CharacterCollectionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22B5A2F62AEB5FDA00FC081C /* CharacterCollectionController.swift */; };
@@ -87,7 +87,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		228702D32AEA430F00E01B44 /* RemoteCharacterLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteCharacterLoader.swift; sourceTree = "<group>"; };
+		228702D32AEA430F00E01B44 /* RemoteLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteLoader.swift; sourceTree = "<group>"; };
 		228B1E012AF0FA3C00D58FB3 /* RemoteLoaderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteLoaderTests.swift; sourceTree = "<group>"; };
 		22B5A2DB2AEB3BA300FC081C /* CharacteriOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = CharacteriOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		22B5A2E22AEB3BA300FC081C /* CharacteriOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CharacteriOSTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -165,6 +165,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2227B4ED2AF7E36A00B23126 /* Shared API */ = {
+			isa = PBXGroup;
+			children = (
+				228702D32AEA430F00E01B44 /* RemoteLoader.swift */,
+			);
+			path = "Shared API";
+			sourceTree = "<group>";
+		};
 		228702D12AEA426900E01B44 /* Character Feature */ = {
 			isa = PBXGroup;
 			children = (
@@ -177,7 +185,7 @@
 		228702D22AEA42A600E01B44 /* Character API */ = {
 			isa = PBXGroup;
 			children = (
-				22B5A3582AEC0D1E00FC081C /* Shared */,
+				22D787432AEA74DB001F7B6F /* CharacterEndpoint.swift */,
 				22B5A3572AEC0CD800FC081C /* Character */,
 				22B5A3562AEC0CC900FC081C /* Image */,
 			);
@@ -295,19 +303,17 @@
 			isa = PBXGroup;
 			children = (
 				22E3039F2AEA67C900482469 /* CharacterMapper.swift */,
-				228702D32AEA430F00E01B44 /* RemoteCharacterLoader.swift */,
 			);
 			path = Character;
 			sourceTree = "<group>";
 		};
-		22B5A3582AEC0D1E00FC081C /* Shared */ = {
+		22B5A3582AEC0D1E00FC081C /* Shared Infra */ = {
 			isa = PBXGroup;
 			children = (
 				22D787412AEA6E2A001F7B6F /* HTTPClient.swift */,
-				22D787432AEA74DB001F7B6F /* CharacterEndpoint.swift */,
 				22D787482AEAA9C3001F7B6F /* URLSessionHTTPClient.swift */,
 			);
-			path = Shared;
+			path = "Shared Infra";
 			sourceTree = "<group>";
 		};
 		22B7DDC82AEA2B9B00F233EF = {
@@ -339,6 +345,8 @@
 		22B7DDD42AEA2B9B00F233EF /* Marvel */ = {
 			isa = PBXGroup;
 			children = (
+				2227B4ED2AF7E36A00B23126 /* Shared API */,
+				22B5A3582AEC0D1E00FC081C /* Shared Infra */,
 				228702D22AEA42A600E01B44 /* Character API */,
 				228702D12AEA426900E01B44 /* Character Feature */,
 				22B5A3432AEC00E300FC081C /* Character Detail Feature */,
@@ -609,7 +617,7 @@
 				22B5A3492AEC018A00FC081C /* CharacterDetailMapper.swift in Sources */,
 				22B5A3322AEB915300FC081C /* CharacterImageDataLoader.swift in Sources */,
 				22D787422AEA6E2A001F7B6F /* HTTPClient.swift in Sources */,
-				228702D42AEA430F00E01B44 /* RemoteCharacterLoader.swift in Sources */,
+				228702D42AEA430F00E01B44 /* RemoteLoader.swift in Sources */,
 				22E303A02AEA67C900482469 /* CharacterMapper.swift in Sources */,
 				22D787442AEA74DB001F7B6F /* CharacterEndpoint.swift in Sources */,
 				22D96CAA2AEE972B0038AC48 /* CharacterDetailLoader.swift in Sources */,
