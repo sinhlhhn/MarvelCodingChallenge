@@ -18,21 +18,13 @@ public class CharacterUIComposer {
         let loadMoreController = CharacterLoadMoreViewController(characterLoader: characterLoader)
         let characterVC = CharacterCollectionController(refreshController: refreshController, loadMoreController: loadMoreController)
         
-        refreshController.onRefresh = { [weak characterVC] items in
-            let cellControllers = items.characters.map { item in
-                CharacterImageCellController(id: item, imageLoader: imageLoader, item: item, onSelect: {
-                    onSelect(item)
-                })
-            }
+        refreshController.onRefresh = { [weak characterVC] item in
+            let cellControllers = makeCharacterImageCellController(item: item, imageLoader: imageLoader, onSelect: onSelect)
             characterVC?.display(items: cellControllers)
         }
         
-        loadMoreController.onRefresh = { [weak characterVC] items in
-            let cellControllers = items.characters.map { item in
-                CharacterImageCellController(id: item, imageLoader: imageLoader, item: item, onSelect: {
-                    onSelect(item)
-                })
-            }
+        loadMoreController.onRefresh = { [weak characterVC] item in
+            let cellControllers = makeCharacterImageCellController(item: item, imageLoader: imageLoader, onSelect: onSelect)
             characterVC?.displayNewItems(items: cellControllers)
         }
         
@@ -50,6 +42,14 @@ public class CharacterUIComposer {
         }
         
         return characterVC
+    }
+    
+    private static func makeCharacterImageCellController(item: Paginated, imageLoader: CharacterImageDataLoader, onSelect: @escaping (CharacterItem) -> Void) -> [CharacterImageCellController] {
+        return item.characters.map { item in
+            CharacterImageCellController(id: item, imageLoader: imageLoader, item: item, onSelect: {
+                onSelect(item)
+            })
+        }
     }
     
     public static func characterDetailComposeWith(url: URL, loader: CharacterDetailLoader) -> UIHostingController<CharacterDetailView> {
