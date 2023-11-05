@@ -6,5 +6,8 @@ day 2: ![Screenshot 2023-10-27 at 22 17 29](https://github.com/sinhlhhn/MarvelCo
 
 day 3: ![image](https://github.com/sinhlhhn/MarvelCodingChallenge/assets/66399719/a633f62c-d2a8-4220-aeb5-2f4e4ee978cc)
 
+day 3-1: ![image](https://github.com/sinhlhhn/MarvelCodingChallenge/assets/66399719/50b02149-09ba-41e6-aaae-c30ddbc7a3e8)
+
+
 
 
