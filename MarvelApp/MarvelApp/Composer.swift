@@ -28,9 +28,9 @@ public class CharacterUIComposer {
             characterVC?.displayNewItems(items: cellControllers)
         }
         
-        loadMoreController.onLoadMore = { page in
+        loadMoreController.onLoadMore = { [weak loadMoreController] page in
             let nextURL = CharacterEndpoint.get(page).url(baseURL: baseURL)
-            loadMoreController.loadMore(url: nextURL)
+            loadMoreController?.loadMore(url: nextURL)
         }
         
         refreshController.onError = { [weak characterVC] error in
@@ -40,6 +40,8 @@ public class CharacterUIComposer {
         loadMoreController.onError = { [weak characterVC] error in
             characterVC?.display(error: error)
         }
+        
+        characterVC.title = "Marvel Heros"
         
         return characterVC
     }
@@ -55,8 +57,10 @@ public class CharacterUIComposer {
     public static func characterDetailComposeWith(url: URL, loader: CharacterDetailLoader) -> UIHostingController<CharacterDetailView> {
         let vm = CharacterDetailViewModel(url: url, loader: loader)
         let view = CharacterDetailView(viewModel: vm)
+        let vc = UIHostingController(rootView: view)
+        vc.title = "Character Bio"
         
-        return UIHostingController(rootView: view)
+        return vc
     }
 }
 

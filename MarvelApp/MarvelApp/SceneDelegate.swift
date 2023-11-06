@@ -46,7 +46,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             characterLoader: MainQueueDispatchDecorator(decoratee: remoteCharacterLoader),
             imageLoader: MainQueueDispatchDecorator(decoratee: remoteImageLoader),
             onSelect: showDetail)
-        vc.title = "Marvel Heros"
         
         return vc
     }
@@ -56,7 +55,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let vc = CharacterUIComposer.characterDetailComposeWith(
             url: url,
             loader: MainQueueDispatchDecorator(decoratee: remoteCharacterDetailLoader))
-        vc.title = "Character Bio"
+        
         navigationController.pushViewController(vc, animated: true)
     }
 }
