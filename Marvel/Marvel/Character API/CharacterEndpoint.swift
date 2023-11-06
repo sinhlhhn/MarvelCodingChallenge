@@ -18,13 +18,13 @@ public enum CharacterEndpoint {
     public func url(baseURL: URL) -> URL {
         var components = URLComponents()
         components.scheme = baseURL.scheme
-        components.host = baseURL.host()
+        components.host = baseURL.host
         switch self {
         case let .get(page):
-            components.path = baseURL.path() + "/v1/public/characters"
+            components.path = baseURL.path + "/v1/public/characters"
             components.queryItems = makeQueries(with: page)
         case let .getDetail(item):
-            components.path = baseURL.path() + "/v1/public/characters/\(item.id)"
+            components.path = baseURL.path + "/v1/public/characters/\(item.id)"
             components.queryItems = makeQueries()
         }
         return components.url!
