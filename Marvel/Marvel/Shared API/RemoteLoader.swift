@@ -28,7 +28,7 @@ public final class RemoteLoader<Item> {
             guard let self = self else { return }
             switch result {
             case let .success((data, response)):
-                completion(mapper(data, response))
+                completion(self.mapper(data, response))
             case .failure(_):
                 completion(.failure(Error.connectivity))
             }
