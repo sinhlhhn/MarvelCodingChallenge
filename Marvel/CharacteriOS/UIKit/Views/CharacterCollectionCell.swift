@@ -7,11 +7,11 @@
 
 import UIKit
 
-class CharacterCollectionCell: UICollectionViewCell {
+public class CharacterCollectionCell: UICollectionViewCell {
 
-    @IBOutlet weak var characterNameLabel: UILabel!
-    @IBOutlet weak var characterImageContainerView: UIView!
-    @IBOutlet weak var characterImage: UIImageView!
+    @IBOutlet public weak var characterNameLabel: UILabel!
+    @IBOutlet public weak var characterImageContainerView: UIView!
+    @IBOutlet public weak var characterImage: UIImageView!
     @IBOutlet public var retryButton: UIButton!
     
     var onRetry: (() -> ())?
