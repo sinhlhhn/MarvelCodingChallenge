@@ -20,14 +20,16 @@ public final class CharacterLoadMoreViewController {
     public var onLoadMore: ((Int) -> Void)?
     
     private var isLoading: Bool = false
+    private var isLast: Bool = false
 
     public func loadMore(url: URL) {
-        if isLoading { return }
+        if isLoading || isLast { return }
         onError?(nil)
         isLoading = true
         characterLoader.load(from: url, completion: { [weak self]  result in
             switch result {
             case let .success(items):
+                self?.isLast = items.isLast
                 self?.onRefresh?(items)
             case let .failure(error):
                 self?.onError?(error.localizedDescription)
