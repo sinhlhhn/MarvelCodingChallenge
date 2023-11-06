@@ -25,7 +25,6 @@ public final class CharacterRefreshViewController: NSObject {
 
     public var onRefresh: ((Paginated) -> Void)?
     public var onError: ((String?) -> Void)?
-    public var onLoadMore: ((Int) -> Void)?
 
     @objc func refresh() {
         onError?(nil)
@@ -40,10 +39,5 @@ public final class CharacterRefreshViewController: NSObject {
             self?.view.endRefreshing()
             
         }
-    }
-    
-    public func loadMore(page: Int) {
-        if view.isRefreshing { return }
-        onLoadMore?(page + 1)
     }
 }
