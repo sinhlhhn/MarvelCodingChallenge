@@ -31,7 +31,7 @@ public class CharacterImageCellController {
         cell.characterNameLabel.text = item.name
         let loadImage = { [weak self] in
             guard let self = self else { return }
-            self.task = self.imageLoader.loadImageData(from: item.thumbnail, completion: { [cell] result in
+            self.task = self.imageLoader.loadImageData(from: self.item.thumbnail, completion: { [cell] result in
                 switch result {
                 case let .success(data):
                     
